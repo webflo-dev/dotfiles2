@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Pulsemixer
+Terminal=false
+Icon=applications-system
+Exec=alacritty --class floating_terminal --title pulsemixer -e pulsemixer
+Categories=Accessories;
+Encoding=UTF-8
+Keywords=Utilities;Audio;
+
+

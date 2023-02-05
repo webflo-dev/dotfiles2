@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=nmtui
+Terminal=false
+Icon=system
+Exec=alacritty --class floating_terminal --title nmtui -e nmtui
+Categories=System;Network
+Encoding=UTF-8
+Keywords=Tools;System;Network
+

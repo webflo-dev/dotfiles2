@@ -1,0 +1,51 @@
+import:
+  - ~/.config/alacritty/summer.yml
+
+font:
+  #size: 7.5
+  size: 12
+  normal:
+    family: "monospace"
+    # style:  medium
+
+#window:
+#  padding:
+#   x: 16
+#   y: 16
+
+
+## Terminal window settings
+window:
+  dimensions:
+    columns: 82
+    lines: 25
+  padding:
+    x: 30
+    y: 25
+  dynamic_padding:  true
+  # opacity: 0.85
+  decorations: full
+  startup_mode: Windowed
+  dynamic_title: true
+  history: 10000
+  multiplier: 3
+
+
+## Cursor
+cursor:
+  style:
+    shape: Block
+    blinking: On
+
+## Live config reload
+#live_config_reload: true
+
+key_bindings:
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: N, mods: Control|Shift, action: ResetFontSize }
+
+# Mouse
+mouse_bindings:
+ - { mouse: Right, action: Paste }
+

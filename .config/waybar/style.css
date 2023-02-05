@@ -1,0 +1,15 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "monospace";
+  /* font-family: "CartographCF Nerd Font Mono"; */
+  /* font-weight: bold; */
+  /* font-size: 14px; */
+  /* min-height: 0; */
+}
+
+window#waybar {
+  background: transparent;
+}
+
+

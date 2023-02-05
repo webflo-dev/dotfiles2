@@ -1,0 +1,115 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 33,
+  "spacing": 10,
+
+  // "modules-left": ["wlr/workspaces", "hyprland/window"],
+  "modules-left": ["wlr/workspaces"],
+  "modules-center": ["clock#time", "clock#date"],
+  "modules-right": [
+    "tray",
+    "cpu",
+    "memory",
+    "idle_inhibitor",
+    "network",
+    "bluetooth",
+    "backlight",
+    "wireplumber",
+    "battery",
+    "custom/power"
+  ],
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", ""]
+  },
+
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 40,
+      "critical": 20
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", "", "", "", "", "", "", ""]
+  },
+
+  "bluetooth": {
+    "format-disabled": "",
+    "format-on": "",
+    "format-off": "",
+    "format-connected": " {num_connections}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "status\t{status}",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%",
+    "on-click": "blueman-manager"
+  },
+  "clock#date": {
+    "format": "{: %A %d %B}",
+    "locale": "fr_FR.utf8",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "today-format": "<span color='#CF3746'><b>{}</b></span>",
+    "calendar-weeks-pos": "right",
+    "format-calendar": "<b>{}</b>",
+    "format-calendar-weeks": "<span color='#7CBD27'><b>W{:%V}</b></span>",
+    "format-calendar-weekdays": "<span color='#ECBD10'><b>{}</b></span>"
+  },
+  "clock#time": {
+    "format": "{: %H:%M}"
+  },
+
+  "cpu": {
+    "interval": 1,
+    // "format": " {}%",
+    "format": "<span font_family=\"fontawesome\"></span> {}%",
+    "on-click": "alacritty --class floating_terminal -e btop"
+  },
+
+  "hyprland/window": {
+    // "format": " {}",
+    "separate-outputs": true
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+
+  "memory": {
+    "interval": 30,
+    "format": "<span font_family=\"fontawesome\"></span> {percentage}%",
+    "on-click": "alacritty --class floating_terminal -e btop"
+  },
+
+  "network": {
+    "format-icons": ["", "", ""],
+    "format-wifi": "{icon} {essid}",
+    "format-ethernet": "<span font=\"awesome\"></span> {essid}",
+    "format-linked": "<span font=\"fontawesome\"></span> {ifname}",
+    "format-disconnected": "<span font=\"fontawesome\"></span> Disconnected",
+    "tooltip-format-ethernet": "{ipaddr}\n<span font=\"fontawesome\"></span> {bandwidthDownBits}\t<span font=\"fontawesome\"></span> {bandwidthUpBits}",
+    "tooltip-format-wifi": "Signal Strenght: {signalStrength}%\n<span font=\"fontawesome\"></span> {bandwidthDownBits}\t<span font=\"fontawesome\"></span> {bandwidthUpBits}"
+  },
+
+  "wireplumber": {
+    "format": "<span font_family=\"fontawesome\" font_weight=\"Heavy\">{icon}</span> {volume}%",
+    "format-muted": "<span font_family=\"fontawesome\" font_weight=\"Heavy\"></span>",
+    "format-icons": ["", "", "", ""],
+    "on-click": "alacritty --class floating_terminal -e pulsemixer"
+  },
+
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "~/.local/bin/powermenu"
+  }
+}
