@@ -79,18 +79,18 @@ vim.opt.undolevels = 1000
 vim.opt.updatetime = 200 --- Faster completion
 vim.opt.viminfo = "'1000" --- Increase the size of file history
 vim.opt.wildignore = [[
- .git,.hg,.svn
- *.aux,*.out,*.toc
- *.o,*.obj,*.exe,*.dll,*.manifest,*.rbc,*.class
- *.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp
- *.avi,*.divx,*.mp4,*.webm,*.mov,*.m2ts,*.mkv,*.vob,*.mpg,*.mpeg
- *.mp3,*.oga,*.ogg,*.wav,*.flac
- *.eot,*.otf,*.ttf,*.woff
- *.doc,*.pdf,*.cbr,*.cbz
- *.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
- *.swp,.lock,.DS_Store,._*
- */tmp/*,*.so,*.swp,*.zip,**/node_modules/**,**/target/**,**.terraform/**"
- ]]
+.git,.hg,.svn
+*.aux,*.out,*.toc
+*.o,*.obj,*.exe,*.dll,*.manifest,*.rbc,*.class
+*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp
+*.avi,*.divx,*.mp4,*.webm,*.mov,*.m2ts,*.mkv,*.vob,*.mpg,*.mpeg
+*.mp3,*.oga,*.ogg,*.wav,*.flac
+*.eot,*.otf,*.ttf,*.woff
+*.doc,*.pdf,*.cbr,*.cbz
+*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
+*.swp,.lock,.DS_Store,._*
+*/tmp/*,*.so,*.swp,*.zip,**/node_modules/**,**/target/**,**.terraform/**"
+]]
 vim.opt.wildignorecase = true -- When set case is ignored when completing file names and directories
 vim.opt.wildmode = "longest:full,full" --- complete the longest common match and allow tabbing the results to fully complete them
 vim.opt.winminwidth = 5 -- Minimum window width

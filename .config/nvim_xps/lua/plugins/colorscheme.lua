@@ -2,7 +2,6 @@ return {
   { "folke/tokyonight.nvim", enabled = true },
   { "Mofiqul/dracula.nvim" },
   { "jacoborus/tender.vim" },
-  { "webflo/dracula-pro.nvim", dev = true },
 
   {
     "LazyVim/LazyVim",
@@ -11,4 +10,6 @@ return {
       -- colorscheme = "dracula",
     },
   },
+
+  { "webflo/dracula-pro.nvim", dev = true },
 }

@@ -2,6 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+
 local function map(mode, lhs, rhs, opts)
   local keys = require("lazy.core.handler").handlers.keys
   -- do not create the keymap if a lazy keys handler exists
@@ -9,9 +10,6 @@ local function map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, opts)
   end
 end
-
--- Some useful commands
--- =ap  => ident all file
 
 -- Maintain the cursor position when yanking a visual selection
 -- http://ddrscott.github.io/blog/2016/yank-without-jank/
@@ -39,4 +37,4 @@ map("n", "<C-b>", "<C-b>zz")
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
-map("n", "<C-S-a>", "<cmd>%y+<CR>", { desc = "Select all and copy" })
+map("n", "<C-a>", "<cmd>%y+<CR>", { desc = "Select all and copy" })

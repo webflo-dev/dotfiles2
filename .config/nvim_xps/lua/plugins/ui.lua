@@ -26,7 +26,6 @@ return {
       -- },
       presets = {
         command_palette = false, -- position the cmdline and popupmenu together
-        lsp_doc_border = false, -- add a border to hover docs and signature help
       },
       cmdline = {
         view = "cmdline",

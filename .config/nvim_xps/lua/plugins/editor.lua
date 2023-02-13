@@ -1,16 +1,19 @@
 return {
-  -- {
-  --   "axelvc/template-string.nvim",
-  --   ft = {
-  --     "javascript",
-  --     "javascriptreact",
-  --     "typescript",
-  --     "typescriptreact",
-  --   }
-  -- }
+  { "echasnovski/mini.pairs", enabled = false },
+  { "echasnovski/mini.surround", enabled = false },
+
+  {
+    "axelvc/template-string.nvim",
+    ft = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+    },
+  },
 
   { "gbprod/stay-in-place.nvim" },
-  -- { "lewis6991/satellite.nvim" },
+
   {
     "stevearc/aerial.nvim",
     keys = {

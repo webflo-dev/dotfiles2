@@ -27,6 +27,10 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
+  dev = {
+    -- directory where you store your local plugin projects
+    path = "~/.config/nvim/custom_plugins",
+  },
   install = {
     missing = true,
     colorscheme = { "catppuccin-mocha" }
