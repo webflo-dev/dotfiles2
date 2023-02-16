@@ -23,7 +23,7 @@ vim.opt.emoji = false --- Fix emoji display
 vim.opt.encoding = "utf-8" --- The encoding displayed
 vim.opt.errorbells = false --- Disables sound effect for errors
 vim.opt.expandtab = true -- Use spaces instead of tabs
-vim.opt.fileencoding = "utf-8" --- The encoding written to file
+-- vim.opt.fileencoding = "utf-8" --- The encoding written to file
 vim.opt.foldcolumn = "0"
 vim.opt.foldlevel = 99 --- Using ufo provider need a large value
 vim.opt.foldlevelstart = 99 --- Expand all folds by default
@@ -35,14 +35,14 @@ vim.opt.hidden = true -- Enable modified buffers in background
 vim.opt.history = 500 -- Use the 'history' option to set the number of lines from command mode that are remembered.
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true --- Needed for smartcase
-vim.opt.incsearch = true --- Start searching before pressing enter
+vim.opt.incsearch = true --- Start searching before p:wqressing enter
 vim.opt.inccommand = "nosplit" -- preview incremental substitute
 vim.opt.laststatus = 3 --- Have a global statusline at the bottom instead of one for each window
 -- vim.opt.laststatus = 0
 -- vim.opt.lazyredraw = true --- Makes macros faster & prevent errors in complicated mappings
-vim.opt.list = true --- Show some invisible characters (tabs...
--- vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<"
-vim.opt.listchars = "tab:>·,trail:~,extends:>,precedes:<"
+vim.opt.list = false --- Show some invisible characters (tabs...
+vim.opt.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<"
+-- vim.opt.listchars = "tab:>·,trail:~,extends:>,precedes:<"
 vim.opt.matchpairs = { "(:)", "{:}", "[:]", "<:>" }
 vim.opt.mouse = "a" --- Enable mouse
 vim.opt.number = true --- Shows current line number
@@ -92,7 +92,8 @@ vim.opt.wildignore = [[
  */tmp/*,*.so,*.swp,*.zip,**/node_modules/**,**/target/**,**.terraform/**"
  ]]
 vim.opt.wildignorecase = true -- When set case is ignored when completing file names and directories
-vim.opt.wildmode = "longest:full,full" --- complete the longest common match and allow tabbing the results to fully complete them
+vim.opt.wildmode =
+"longest:full,full" --- complete the longest common match and allow tabbing the results to fully complete them
 vim.opt.winminwidth = 5 -- Minimum window width
 vim.opt.wrap = false --- Display long lines as just one line
 vim.opt.writebackup = false --- Not needed

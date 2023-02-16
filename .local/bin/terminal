@@ -2,14 +2,21 @@
 
 notify_cmd='notify-send -h string:x-canonical-private-synchronous:sys-notify -u low'
 
-if ! command -v alacritty &> /dev/null
+terminal="kitty"
+terminal_cmd_arg=""
+
+# terminal="alacritty"
+# terminal_cmd_arg="-e"
+
+
+if ! command -v $terminal &> /dev/null
 then
-	$notify_cmd "'alacritty' is not installed."
+	$notify_cmd "'$terminal' is not installed."
     exit 1
 fi
 
 
-VALID_ARGS=$(getopt -o fe:c: --long float,command:,class: -- "$@")
+VALID_ARGS=$(getopt -o fe:c:t: --long float,command:,class:,title: -- "$@")
 if [[ $? -ne 0 ]]; then
     exit 1;
 fi
@@ -22,7 +29,7 @@ while [ : ]; do
         echo -e "Cannot have multiple class"
         exit 0
       fi
-      CLASS="float-terminal"
+      CLASS="floating_terminal"
       shift
       ;;
     -e | --command)
@@ -37,11 +44,16 @@ while [ : ]; do
       CLASS="$2"
       shift 2
       ;;
-    --) shift; 
+    -t | --title)
+      TITLE="$2"
+      shift 2
+      ;;
+    --)
+      shift; 
       break 
       ;;
   esac
 done
 
-alacritty ${CLASS:+--class $CLASS} ${CMD:+--command $CMD}
+$terminal ${CLASS:+--class $CLASS} ${TITLE:+--title $TITLE} ${CMD:+$terminal_cmd_arg $CMD}
 

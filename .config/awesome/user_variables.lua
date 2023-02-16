@@ -3,17 +3,14 @@ local home = os.getenv("HOME")
 local local_bin = home .. "/.local/bin/"
 
 return {
-
-  terminal = "alacritty",
-  floating_terminal = "alacritty --class float-terminal",
+  terminal = "kitty",
+  floating_terminal = "kitty --class float-terminal",
   editor = "nvim",
   code_editor = "code",
   file_manager = "thunar",
   web_browser = "microsoft-edge-stable",
   music_player = "spotify",
-
   theme = "summer",
-
   cmd = {
     terminal = local_bin .. "terminal",
     terminal_float = local_bin .. "terminal --float",

@@ -1,10 +1,15 @@
 return {
-
   {
     "nvim-treesitter/nvim-treesitter",
+    version = false, -- last release is way too old and doesn't work on Windows
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
     dependencies = {
-      { "windwp/nvim-ts-autotag", lazy = true },
       -- { "nvim-treesitter/playground", lazy = true },
+    },
+    keys = {
+      { "<c-space>", desc = "Increment selection" },
+      { "<bs>",      desc = "Schrink selection",  mode = "x" },
     },
     opts = {
       ensure_installed = {
@@ -116,6 +121,9 @@ return {
           },
         },
       },
-    }
-  }
+    },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
 }
