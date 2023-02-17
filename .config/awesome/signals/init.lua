@@ -1,8 +1,0 @@
-require("signals.volume")
-require("signals.mic")
-require("signals.power")
-require("signals.cpu")
-require("signals.memory")
-require("signals.bluetooth")
-require("signals.network")
-require("signals.nvidia")

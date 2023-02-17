@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+case "$1" in
+  --clear)
+    rm -rf ~/.local/share/nvim/ ~/.local/state/nvim ~/.config/nvim/
+    exit
+  ;;
+  --save)
+    if [[ -z "$2" ]]; then
+      echo "please, provide a name"
+      exit
+    fi
+    distro_name=${2// /_}
+    rm -rf ~/.local/share/nvim_${distro_name}/
+    cp -r ~/.local/share/nvim/ ~/.local/share/nvim_${distro_name}/
+    
+    rm -rf ~/.config/nvim/nvim_${distro_name}/
+    cp -r ~/.config/nvim/ ~/.config/nvim_${distro_name}/
+    exit
+  ;;
+  *)
+    distro_name=$1
+      if [[ -z "$distro_name" ]]; then
+        echo "usage: nvim_switch [OPTIONS] [NAME]
+      
+OPTIONS
+  --clear
+  --save
+"
+        exit
+    fi
+
+    if [[ -d "$HOME/.local/share/nvim_${distro_name}" && -d "$HOME/.config/nvim_${distro_name}" ]]; then
+      rm -rf ~/.local/share/nvim/
+      cp -r ~/.local/share/nvim_${distro_name} ~/.local/share/nvim
+
+      rm -rf ~/.config/nvim
+      cp -r ~/.config/nvim_${distro_name} ~/.config/nvim
+    else
+      echo "distro is incomplete."
+    fi
+    exit
+  ;;
+esac
+
+
+
