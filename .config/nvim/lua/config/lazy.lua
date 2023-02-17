@@ -17,6 +17,7 @@ require("lazy").setup({
     -- { "webflo/webflo.nvim", dev = true, import = "" },
     { import = "plugins/essentials" },
     { import = "plugins" },
+    -- { import = "plugins/heirline" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.

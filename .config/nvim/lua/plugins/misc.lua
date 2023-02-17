@@ -20,4 +20,15 @@ return {
       },
     },
   },
+
+
+  { "gbprod/stay-in-place.nvim" },
+
+  -- {
+  --   "lewis6991/satellite.nvim",
+  --   config = function()
+  --     require('satellite').setup()
+  --   end
+  -- },
+
 }

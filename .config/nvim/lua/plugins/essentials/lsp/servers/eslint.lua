@@ -7,6 +7,11 @@ function M.on_attach(client, bufnr)
   end
 
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    buffer = bufnr,
+    command = "EslintFixAll",
+  })
 end
 
 M.settings = {
@@ -24,6 +29,5 @@ M.settings = {
     mode = "location",
   },
 }
-
 
 return M

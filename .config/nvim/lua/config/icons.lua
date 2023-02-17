@@ -1,4 +1,16 @@
 return {
+  common = {
+    lock         = '',
+    search       = '',
+    asterisk     = '',
+    gear         = '',
+    circle       = '',
+    circle_small = '●',
+    circle_plus  = '',
+    dot_circle_o = '',
+    circle_o     = '⭘',
+    terminal     = '',
+  },
   diagnostics = {
     Error = " ",
     Warn = " ",
@@ -7,8 +19,15 @@ return {
   },
   git = {
     added = " ",
-    modified = " ",
     removed = " ",
+    modified = " ",
+    renamed = "",
+    untracked = "柳",
+    ignored = "",
+    unstaged = "",
+    staged = "",
+    conflict = "",
+    branch = "",
   },
   kinds = {
     Array = " ",

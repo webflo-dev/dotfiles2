@@ -1,6 +1,4 @@
 return {
-  { "ThePrimeagen/vim-be-good" },
-
   {
     "theprimeagen/harpoon",
     -- dependencies = {
