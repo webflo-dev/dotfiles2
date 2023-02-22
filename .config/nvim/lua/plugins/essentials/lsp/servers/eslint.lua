@@ -2,6 +2,7 @@ local M = {}
 
 function M.on_attach(client, bufnr)
   client.server_capabilities.documentFormattingProvider = true
+
   local function buf_set_option(...)
     vim.api.nvim_buf_set_option(bufnr, ...)
   end

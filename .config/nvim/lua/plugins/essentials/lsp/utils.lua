@@ -5,17 +5,17 @@ local function format()
   if vim.b.autoformat == false then
     return
   end
-  local ft = vim.bo[buf].filetype
-  local have_nls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
+  -- local ft = vim.bo[buf].filetype
+  -- local have_nls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
 
   vim.lsp.buf.format({
     bufnr = buf,
-    filter = function(client)
-      if have_nls then
-        return client.name == "null-ls"
-      end
-      return client.name ~= "null-ls"
-    end,
+    -- filter = function(client)
+    --   if have_nls then
+    --     return client.name == "null-ls"
+    --   end
+    --   return client.name ~= "null-ls"
+    -- end,
   })
 end
 
@@ -29,7 +29,7 @@ end
 
 
 local function get_lsp_keymaps()
-  local keys = {
+  local keys_fzflua = {
     { "<leader>cd", vim.diagnostic.open_float,               desc = "Line Diagnostics" },
     { "]d",         diagnostic_goto(true),                   desc = "Next Diagnostic" },
     { "[d",         diagnostic_goto(false),                  desc = "Prev Diagnostic" },
@@ -47,7 +47,7 @@ local function get_lsp_keymaps()
     { "gt",         "<cmd>FzfLua lsp_typedefs<cr>",          desc = "Goto Type Definition" },
     { "gi",         "<cmd>FzfLua lsp_implementations<cr>",   desc = "Goto Implementation" },
     { "gh",         "<cmd>FzfLua lsp_references<cr>",        desc = "References" },
-    { "gr",         "<cmd><cr>",                             desc = "References" },
+    { "gr",         "<cmd>FzfLua lsp_references<cr>",        desc = "References" },
     { "gci",        "<cmd>FzfLua lsp_incoming_calls<cr>",    desc = "Incoming calls" },
     { "gco",        "<cmd>FzfLua lsp_outgoing_calls<cr>",    desc = "Outgoing calls" },
     { "gs",         "<cmd>FzfLua lsp_document_symbols<cr>",  desc = "Symbols" },
@@ -58,7 +58,42 @@ local function get_lsp_keymaps()
     { "th",         "<cmd>Trouble lsp_references<cr>",       desc = "References (trouble)" },
     { "tt",         "<cmd>Trouble lsp_type_definitions<cr>", desc = "Goto Type Definition (trouble)" },
   }
-  return keys
+
+  local keys_telescope = {
+    { "<leader>cd", vim.diagnostic.open_float,                 desc = "Line Diagnostics" },
+    { "]d",         diagnostic_goto(true),                     desc = "Next Diagnostic" },
+    { "[d",         diagnostic_goto(false),                    desc = "Prev Diagnostic" },
+    { "]e",         diagnostic_goto(true, "ERROR"),            desc = "Next Error" },
+    { "[e",         diagnostic_goto(false, "ERROR"),           desc = "Prev Error" },
+    { "]w",         diagnostic_goto(true, "WARN"),             desc = "Next Warning" },
+    { "[w",         diagnostic_goto(false, "WARN"),            desc = "Prev Warning" },
+    { "K",          vim.lsp.buf.hover,                         desc = "Hover" },
+    { "gK",         vim.lsp.buf.signature_help,                desc = "Signature Help",                has = "signatureHelp" },
+    { "<c-k>",      vim.lsp.buf.signature_help,                desc = "Signature Help",                mode = "i",           has = "signatureHelp" },
+    { "<leader>ca", vim.lsp.buf.code_action,                   desc = "Code Action",                   mode = { "n", "v" },  has = "codeAction" },
+    { "<leader>cr", vim.lsp.buf.rename,                        desc = "Rename",                        has = "rename" },
+    { "gd",         "<cmd>Telescope lsp_definitions<cr>",      desc = "Goto Definition" },
+    { "gD",         vim.lsp.buf.declaration,                   desc = "Goto Declaration" },
+    { "gt",         "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definition" },
+    { "gi",         "<cmd>Telescope lsp_implementations<cr>",  desc = "Goto Implementation" },
+    { "gh",         "<cmd>Telescope lsp_references<cr>",       desc = "References" },
+    { "gr",         "<cmd>Telescope lsp_references<cr>",       desc = "References" },
+    { "gci",        "<cmd>Telescope lsp_incoming_calls<cr>",   desc = "Incoming calls" },
+    { "gco",        "<cmd>Telescope lsp_outgoing_calls<cr>",   desc = "Outgoing calls" },
+    { "gs",         "<cmd>Telescope lsp_document_symbols<cr>", desc = "Symbols" },
+
+    -- Trouble
+    { "td",         "<cmd>Trouble lsp_definitions<cr>",        desc = "Goto Definition (trouble)" },
+    { "ti",         "<cmd>Trouble lsp_implementations<cr>",    desc = "Goto Implementation (trouble)" },
+    { "th",         "<cmd>Trouble lsp_references<cr>",         desc = "References (trouble)" },
+    { "tt",         "<cmd>Trouble lsp_type_definitions<cr>",   desc = "Goto Type Definition (trouble)" },
+  }
+
+  if (require("lazy.core.config").plugins["telescope.nvim"] ~= nil) then
+    return keys_telescope
+  end
+
+  return keys_fzflua
 end
 
 

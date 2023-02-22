@@ -1,0 +1,31 @@
+return {
+  {
+    "gennaro-tedesco/nvim-possession",
+    dependencies = {
+      "ibhagwan/fzf-lua",
+    },
+    -- opts = {
+    --   autoswitch = {
+    --     enable = true
+    --   },
+    -- },
+    config = function()
+      require("nvim-possession").setup({
+        sessions = {
+          -- sessions_icon = ""
+        },
+        autload = true,
+        autoswitch = {
+          enable = true
+        },
+      })
+    end,
+    init = function()
+      local possession = require("nvim-possession")
+      vim.keymap.set("n", "<leader>pl", possession.list, { desc = "show sessions" })
+      vim.keymap.set("n", "<leader>pn", possession.new, { desc = "new session" })
+      vim.keymap.set("n", "<leader>pu", possession.update, { desc = "update session" })
+      vim.keymap.set("n", "<leader>px", possession.delete, { desc = "delete session" })
+    end,
+  }
+}

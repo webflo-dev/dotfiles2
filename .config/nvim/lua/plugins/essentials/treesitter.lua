@@ -1,15 +1,49 @@
 return {
+  { "JoosepAlviste/nvim-ts-context-commentstring" },
+
+
+  {
+    "echasnovski/mini.comment",
+    version = false,
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      hooks = {
+        pre = function()
+          require('ts_context_commentstring.internal').update_commentstring()
+        end,
+      },
+    },
+    config = function(_, opts)
+      require("mini.comment").setup(opts)
+    end
+  },
+
   {
     "nvim-treesitter/nvim-treesitter",
     version = false, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
+      { "nvim-treesitter/nvim-treesitter-textobjects" },
       -- { "nvim-treesitter/playground", lazy = true },
     },
     keys = {
       { "<c-space>", desc = "Increment selection" },
       { "<bs>",      desc = "Schrink selection",  mode = "x" },
+
+      -- Repeat movement with ; and ,
+      -- ensure ; goes forward and , goes backward regardless of the last direction
+      -- { ";",         require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_next },
+      -- { ",",         require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_previous },
+
+      -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
+      -- { "f",         require("nvim-treesitter.textobjects.repeatable_move").builtin_f },
+      -- { "F",         require("nvim-treesitter.textobjects.repeatable_move").builtin_F },
+      -- { "t",         require("nvim-treesitter.textobjects.repeatable_move").builtin_t },
+      -- { "T",         require("nvim-treesitter.textobjects.repeatable_move").builtin_T },
     },
     opts = {
       ensure_installed = {
@@ -67,7 +101,7 @@ return {
       },
       context_commentstring = {
         enable = true,
-        enable_autocmd = false
+        enable_autocmd = false, -- use for Commnet.nvim integration
       },
       incremental_selection = {
         enable = true,
@@ -79,6 +113,14 @@ return {
         },
       },
       textobjects = {
+        lsp_interop = {
+          enable = true,
+          border = "rounded",
+          peek_definition_code = {
+            ["<leader>df"] = "@function.outer",
+            ["<leader>dF"] = "@class.outer",
+          },
+        },
         select = {
           enable = true,
           lookahead = true,
@@ -90,6 +132,11 @@ return {
             ['ia'] = '@parameter.inner',
             ['aa'] = '@parameter.outer',
           },
+          --selection_modes = {
+          --  ['@parameter.outer'] = 'v', -- charwise
+          --  ['@function.outer'] = 'V', -- linewise
+          --  ['@class.outer'] = '<C-v>', --blockwise
+          -- },
         },
         move = {
           enable = true,

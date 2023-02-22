@@ -8,31 +8,25 @@ return {
     },
     cmd = "Telescope",
     keys = {
-      { "<leader>/",  "<cmd>Telescepe live_grep<cr>",                       desc = "Find in Files (Grep)" },
+      { "<leader>,",  "<cmd>Telescope buffers show_all_buffers=true<cr>",   desc = "Show Buffer" },
+      { "<leader>/",  "<cmd>Telescope live_grep<cr>",                       desc = "Find in Files (Grep)" },
       { "<leader>:",  "<cmd>Telescope command_history<cr>",                 desc = "Command History" },
 
       -- find
-      { "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>",          desc = "Search files" },
+      { "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>",          desc = "Find files" },
       { "<leader>fb", "<cmd>Telescope buffers show_all_buffers=true<cr>",   desc = "Buffers" },
-      { "<leader>,",  "<cmd>Telescope buffers show_all_buffers=true<cr>",   desc = "Switch Buffer" },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>",                        desc = "Recent" },
+      { "<leader>ft", "<cmd>Telescope buffers<cr>",                         desc = "Find tabs" },
+      { "<leader>fw", "<cmd>Telescope grep_string<cr>",                     desc = "Search word" },
 
       -- git
-      -- { "<leader>gc", "<cmd>Telescope git_commits<CR>",                   desc = "commits" },
-      { "<leader>gs", "<cmd>Telescope git_status<CR>",                      desc = "status" },
-      { "<leader>gS", "<cmd>Telescope git_stash<CR>",                       desc = "stashes" },
-      { "<leader>gb", "<cmd>Telescope git_branches<CR>",                    desc = "branches" },
+      { "<leader>gf", "<cmd>Telescope git_files<cr>",                       desc = "git files" },
+      { "<leader>gc", "<cmd>Telescope git_commits<CR>",                     desc = "git commits" },
+      { "<leader>gs", "<cmd>Telescope git_status<CR>",                      desc = "git status" },
+      { "<leader>gt", "<cmd>Telescope git_stash<CR>",                       desc = "git sstashes" },
+      { "<leader>gb", "<cmd>Telescope git_branches<CR>",                    desc = "git branches" },
 
-
-      -- search
-      { "<leader>sd", "<cmd>Telescope diagnostics<cr>",                     desc = "Diagnostics" },
-      { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>",       desc = "Buffer" },
-      { "<leader>sw", "<cmd>Telescope grep_string<cr>",                     desc = "Word" },
-
-
-      -- search misc.
-      { "<leader>sm", "<cmd>Telescope marks<cr>",                           desc = "Jump to Mark" },
-      { "<leader>sk", "<cmd>Telescope keymaps<cr>",                         desc = "Key Maps" },
+      -- misc.
       { "<leader>uC", "<cmd>Telescope colorscheme enable_preview=true<cr>", desc = "Colorscheme with preview" },
 
     },

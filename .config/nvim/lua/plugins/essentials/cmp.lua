@@ -10,6 +10,9 @@ return {
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
 
+      -- snippet engine
+      "dcampos/nvim-snippy",
+
       -- sources
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
@@ -33,6 +36,11 @@ return {
       return {
         completion = {
           completeopt = "menu,menuone,noinsert",
+        },
+        snippet = {
+          expand = function(args)
+            require('snippy').expand_snippet(args.body)
+          end,
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -68,6 +76,7 @@ return {
           { name = "nvim_lsp" },
           { name = "nvim_lsp_signature_help" },
           { name = "nvim_lsp_document_symbol" },
+          { name = "codeium" },
           -- { name = "buffer",                  keyword_length = 5 },
           { name = "path" },
           -- { name = "git" },

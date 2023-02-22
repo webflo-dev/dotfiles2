@@ -23,10 +23,9 @@ return {
 
       -- search
       { "<leader>sw",      "<cmd>FzfLua grep_cword<cr>",       desc = "" },
-      { "<leader>s",       "<cmd>FzfLua<cr>",                  desc = "" },
-      { "<leader>s",       "<cmd>FzfLua<cr>",                  desc = "" },
-      { "<leader>s",       "<cmd>FzfLua<cr>",                  desc = "" },
     },
-    opts = "telescope"
+    config = function()
+      require("fzf-lua").setup("telescope")
+    end
   },
 }

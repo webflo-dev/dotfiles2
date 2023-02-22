@@ -62,7 +62,7 @@ return {
         "bashls",
         "cssls",
         "eslint",
-        "graphql",
+        --"graphql",
         "html",
         "jsonls",
         "lua_ls",
@@ -105,7 +105,12 @@ return {
 
       -- setup LSP servers
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+      if require("lazy.core.config").plugins["cmp-nvim-lsp"] ~= nil then
+        capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+      end
+
+
 
       local handlers = {
         ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
@@ -126,27 +131,29 @@ return {
             server_opts = vim.tbl_deep_extend("force", server_opts, custom_config)
           end
         end
-        require("lspconfig")[server].setup(server_opts)
+
+        if require("lazy.core.config").plugins["coq_nvim"] ~= nil then
+          require("lspconfig")[server].setup(require("coq").lsp_ensure_capabilities(server_opts))
+        else
+          require("lspconfig")[server].setup(server_opts)
+        end
       end
 
       require("mason-lspconfig").setup_handlers({ setup })
     end,
   },
 
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "mason.nvim" },
-    opts = function()
-      local nls = require("null-ls")
-      return {
-        sources = {
-          nls.builtins.formatting.prettier,
-          -- nls.builtins.formatting.prettierd,
-          -- nls.builtins.formatting.stylua,
-          -- nls.builtins.diagnostics.flake8,
-        },
-      }
-    end,
-  },
+  -- {
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   dependencies = { "mason.nvim" },
+  --   opts = function()
+  --     local nls = require("null-ls")
+  --     return {
+  --       sources = {
+  --         nls.builtins.formatting.prettier,
+  --       },
+  --     }
+  --   end,
+  -- },
 }

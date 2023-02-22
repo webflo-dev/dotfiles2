@@ -500,6 +500,7 @@ return {
           -- %V  : virtual column number as -{num}.  Not displayed if equal to '%c'.
           -- provider = '%9(%l:%L%) | %-3(%c%V%) ',
           provider = '%3(%l%):%-3(%c%)▎%L',
+          -- provider = '%3(%l%):%-3(%c%)%L',
           -- provider = '%3(%l%):%-3(%c%)▎%L▎%3(%P%)',
           -- provider = '%3(%l%):%L|%-3(%c%)',
           hl = {
@@ -517,6 +518,27 @@ return {
         end,
       })
 
+      local CurrentSession = {
+        condition = function()
+          return
+              (require("lazy.core.config").plugins["nvim-possession"] ~= nil
+              and
+              require("nvim-possession").current_session_name() ~= nil)
+        end,
+        heirline.surround(
+          { "", "" },
+          colors.fg_gutter,
+          {
+            provider = function() return require("nvim-possession").current_session_name() end,
+            hl = {
+              fg = heirline.get_highlight('Statusline').fg,
+              -- fg = colors.blue,
+              bg = colors.fg_gutter,
+            },
+          }
+        ),
+        Space
+      }
 
       local TerminalName = {
         -- we could add a condition to check that buftype == 'terminal'
@@ -548,6 +570,7 @@ return {
           Mode,
           Space,
           SearchResults,
+          CurrentSession,
           FileNameBlock,
           Space(4),
           Align,
@@ -637,7 +660,6 @@ return {
         -- A winbar for regular files
         heirline.surround({ "", "" }, colors.blue, { FileNameBlock }),
       }
-
 
 
       --------------------------------------------------------------------------------
