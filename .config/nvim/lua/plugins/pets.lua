@@ -15,6 +15,13 @@ return {
       "PetsHideToggle",
       "PetsSleepToggle",
     },
+    init = function()
+      vim.api.nvim_create_user_command("PetsAuto", function()
+        vim.cmd("PetsNew " .. os.time(os.date("!*t")))
+      end, {
+        nargs = 0
+      })
+    end,
     config = function(_, opts)
       require("pets").setup(opts)
     end

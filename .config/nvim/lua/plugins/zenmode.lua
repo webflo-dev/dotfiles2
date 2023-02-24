@@ -8,7 +8,7 @@ return {
     },
     opts = {
       window = {
-        width = 200
+        width = 150
       },
       plugins = {
         twilight = { enabled = false },
@@ -36,5 +36,4 @@ return {
       end,
     },
   },
-
 }

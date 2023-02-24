@@ -13,22 +13,27 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +155 ~/.config/nvim/lua/plugins/essentials/lsp/init.lua
-badd +9 ~/.config/nvim/lua/plugins/essentials/lsp/utils.lua
-badd +23 ~/.config/nvim/custom_plugins/nvim-possession/lua/nvim-possession/init.lua
-badd +59 ~/.config/nvim/custom_plugins/nvim-possession/lua/nvim-possession/core.lua
-badd +8 ~/.config/nvim/lua/plugins/sessions.lua
+badd +155 lua/plugins/essentials/lsp/init.lua
+badd +9 lua/plugins/essentials/lsp/utils.lua
+badd +23 custom_plugins/nvim-possession/lua/nvim-possession/init.lua
+badd +59 custom_plugins/nvim-possession/lua/nvim-possession/core.lua
+badd +14 lua/plugins/sessions.lua
+badd +34 lua/plugins/zenmode.lua
+badd +168 lua/config/keymaps.lua
+badd +2 ~/.config/nvim/lua/plugins/bufterm.lua
+badd +5 ~/.config/nvim/lua/plugins/essentials/fzf.lua
+badd +20 lua/plugins/pets.lua
 argglobal
 %argdel
-edit ~/.config/nvim/lua/plugins/sessions.lua
+edit lua/plugins/pets.lua
 argglobal
-balt ~/.config/nvim/custom_plugins/nvim-possession/lua/nvim-possession/core.lua
-let s:l = 8 - ((7 * winheight(0) + 20) / 40)
+balt ~/.config/nvim/lua/plugins/essentials/fzf.lua
+let s:l = 20 - ((19 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 8
-normal! 05|
+keepjumps 20
+normal! 054|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
