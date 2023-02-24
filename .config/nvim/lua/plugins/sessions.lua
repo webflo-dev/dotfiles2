@@ -1,10 +1,9 @@
 return {
   {
-    "webflo-dev/nvim-possession",
+    "webflo-dev/nvim-sessions",
     dependencies = {
       "fzf-lua",
     },
-    dev = true,
     config = true,
     keys = {
       { "<leader>pl", "<cmd>Session list<cr>",   desc = "show sessions" },
@@ -12,10 +11,4 @@ return {
       { "<leader>pu", "<cmd>Session update<cr>", desc = "update session" },
     },
   }
-
-
-  --   {
-  --     "folke/persistence.nvim",
-  --     config = true,
-  --   }
 }
