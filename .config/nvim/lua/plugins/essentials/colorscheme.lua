@@ -1,6 +1,9 @@
 return {
-  { "folke/tokyonight.nvim",   lazy = true, },
-  { "Mofiqul/dracula.nvim",    lazy = true },
-  { "catppuccin/nvim",         lazy = true, name = "catppuccin", },
-  { "webflo/dracula-pro.nvim", lazy = true, dev = true },
+  { "folke/tokyonight.nvim" },
+  { "Mofiqul/dracula.nvim" },
+  { "Mofiqul/vscode.nvim" },
+  { "catppuccin/nvim",         name = "catppuccin" },
+  { "webflo/dracula-pro.nvim", dev = true },
+  { "Yazeed1s/minimal.nvim" },
+  { "webflo/dracula_pro",      dev = true },
 }

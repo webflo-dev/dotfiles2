@@ -521,15 +521,15 @@ return {
       local CurrentSession = {
         condition = function()
           return
-              (require("lazy.core.config").plugins["nvim-possession"] ~= nil
+              (require("lazy.core.config").plugins["nvim-sessions"] ~= nil
               and
-              require("nvim-possession").current_session_name() ~= nil)
+              require("nvim-sessions").current_session_name() ~= nil)
         end,
         heirline.surround(
           { "", "" },
           colors.fg_gutter,
           {
-            provider = function() return require("nvim-possession").current_session_name() end,
+            provider = function() return "📌 " .. require("nvim-sessions").current_session_name() end,
             hl = {
               fg = heirline.get_highlight('Statusline').fg,
               -- fg = colors.blue,

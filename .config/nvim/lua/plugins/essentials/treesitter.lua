@@ -1,7 +1,6 @@
 return {
   { "JoosepAlviste/nvim-ts-context-commentstring" },
 
-
   {
     "echasnovski/mini.comment",
     version = false,
@@ -28,6 +27,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
+      { "nvim-treesitter/nvim-treesitter-context" },
       -- { "nvim-treesitter/playground", lazy = true },
     },
     keys = {

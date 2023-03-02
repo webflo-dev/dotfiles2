@@ -110,4 +110,9 @@ end
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
 
-
+vim.g.minimal_italic_comments = true
+vim.g.minimal_italic_keywords = false
+vim.g.minimal_italic_booleans = false
+vim.g.minimal_italic_functionls = false
+vim.g.minimal_italic_variables = false
+vim.g.minimal_transparent_background = false
