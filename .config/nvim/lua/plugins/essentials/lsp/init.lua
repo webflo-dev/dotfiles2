@@ -24,6 +24,11 @@ return {
     end,
   },
 
+  -- {
+  --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  --   config = true
+  -- },
+  --
 
   {
     "neovim/nvim-lspconfig",
@@ -37,9 +42,11 @@ return {
       diagnostics = {
         underline = true,
         update_in_insert = false,
+        -- virtual_text = {
+        --   only_current_line = true
+        -- },
         virtual_text = {
           spacing = 4,
-          -- prefix = "●",
           prefix = "■",
         },
         severity_sort = true,
@@ -113,9 +120,9 @@ return {
 
 
       local handlers = {
-        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
-        ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }),
+            ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+            ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+            ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }),
       }
 
       local function setup(server)

@@ -38,9 +38,14 @@ local function get_lsp_keymaps()
     { "]w",         diagnostic_goto(true, "WARN"),           desc = "Next Warning" },
     { "[w",         diagnostic_goto(false, "WARN"),          desc = "Prev Warning" },
     { "K",          vim.lsp.buf.hover,                       desc = "Hover" },
-    { "gK",         vim.lsp.buf.signature_help,              desc = "Signature Help",                has = "signatureHelp" },
-    { "<c-k>",      vim.lsp.buf.signature_help,              desc = "Signature Help",                mode = "i",           has = "signatureHelp" },
-    { "<leader>ca", "<cmd>FzfLua lsp_code_actions<cr>",      desc = "Code Action",                   mode = { "n", "v" },  has = "codeAction" },
+    { "gK",         vim.lsp.buf.signature_help,              desc = "Signature Help",                has =
+    "signatureHelp" },
+    { "<c-k>",      vim.lsp.buf.signature_help,              desc = "Signature Help",                mode = "i",
+                                                                                                                             has =
+      "signatureHelp" },
+    { "<leader>ca", "<cmd>FzfLua lsp_code_actions<cr>",      desc = "Code Action",                   mode = { "n", "v" },
+                                                                                                                             has =
+      "codeAction" },
     { "<leader>cr", vim.lsp.buf.rename,                      desc = "Rename",                        has = "rename" },
     { "gd",         "<cmd>FzfLua lsp_definitions<cr>",       desc = "Goto Definition" },
     { "gD",         "<cmd>FzfLua lsp_declarations<cr>",      desc = "Goto Declaration" },
@@ -68,9 +73,14 @@ local function get_lsp_keymaps()
     { "]w",         diagnostic_goto(true, "WARN"),             desc = "Next Warning" },
     { "[w",         diagnostic_goto(false, "WARN"),            desc = "Prev Warning" },
     { "K",          vim.lsp.buf.hover,                         desc = "Hover" },
-    { "gK",         vim.lsp.buf.signature_help,                desc = "Signature Help",                has = "signatureHelp" },
-    { "<c-k>",      vim.lsp.buf.signature_help,                desc = "Signature Help",                mode = "i",           has = "signatureHelp" },
-    { "<leader>ca", vim.lsp.buf.code_action,                   desc = "Code Action",                   mode = { "n", "v" },  has = "codeAction" },
+    { "gK",         vim.lsp.buf.signature_help,                desc = "Signature Help",                has =
+    "signatureHelp" },
+    { "<c-k>",      vim.lsp.buf.signature_help,                desc = "Signature Help",                mode = "i",
+                                                                                                                               has =
+      "signatureHelp" },
+    { "<leader>ca", vim.lsp.buf.code_action,                   desc = "Code Action",                   mode = { "n", "v" },
+                                                                                                                               has =
+      "codeAction" },
     { "<leader>cr", vim.lsp.buf.rename,                        desc = "Rename",                        has = "rename" },
     { "gd",         "<cmd>Telescope lsp_definitions<cr>",      desc = "Goto Definition" },
     { "gD",         vim.lsp.buf.declaration,                   desc = "Goto Declaration" },
@@ -142,7 +152,7 @@ function M.attach_keymaps(client, buffer)
   end
 end
 
-function M.attach_diagnostics(client, buffer)
+function M.attach_popup_diagnostics(client, buffer)
   vim.api.nvim_create_autocmd("CursorHold", {
     buffer = buffer,
     callback = function()

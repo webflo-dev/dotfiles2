@@ -1,28 +1,13 @@
 return {
+  --liangxianzhe/nap-nvim { "gbprod/stay-in-place.nvim" },
 
   -- {
-  --   "lalitmee/browse.nvim",
-  --   bookmarks = {
-  --     ["github"] = {
-  --       ["name"] = "search github from neovim",
-  --       ["code_search"] = "https://github.com/search?q=%s&type=code",
-  --       ["repo_search"] = "https://github.com/search?q=%s&type=repositories",
-  --       ["issues_search"] = "https://github.com/search?q=%s&type=issues",
-  --       ["pulls_search"] = "https://github.com/search?q=%s&type=pullrequests",
-  --     },
-  --   },
+  --   "liangxianzhe/nap-nvim",
+  --   config = true,
   -- },
 
-
-  { "gbprod/stay-in-place.nvim" },
-
-
-  -- {
-  --   "lewis6991/satellite.nvim",
-  --   config = function()
-  --     require('satellite').setup()
-  --   end
-  -- },
-
-  { "nanotee/sqls.nvim" },
+  {
+    "dnlhc/glance.nvim",
+    config = true,
+  }
 }
