@@ -141,9 +141,9 @@ local floating = mkbutton({
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
-  if c.requests_no_titlebar then
-    return
-  end
+  -- if c.requests_no_titlebar then
+  --   return
+  -- end
 
   -- buttons for the titlebar
   local buttons = {

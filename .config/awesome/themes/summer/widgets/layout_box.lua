@@ -31,8 +31,8 @@ local _name = function(s)
     valign = 'center',
   }
 
-  local function update_txt(s)
-    local name = awful.layout.getname(awful.layout.get(s)) or ""
+  local function update_txt(_s)
+    local name = awful.layout.getname(awful.layout.get(_s)) or ""
     textbox:set_text(name)
   end
 
@@ -46,7 +46,7 @@ end
 
 return function(s)
   return wibox.widget {
-    box(_icon(s), nil, nil, _name(s), nil, nil),
+    box(_icon(s), _name(s)),
     buttons = {
       awful.button({}, 1, function() awful.layout.inc(1) end),
       awful.button({}, 3, function() awful.layout.inc(-1) end),

@@ -1,20 +1,20 @@
 local awful = require "awful"
 local gears = require "gears"
 local wibox = require "wibox"
-local naughty = require "naughty"
 local beautiful = require "beautiful"
 local dpi = beautiful.xresources.apply_dpi
 local xrdb = beautiful.xresources.get_current_theme()
-
+local utils = require("themes.summer.util")
 
 
 local function update_tag(item, tag, index)
+  local subIndex = "<sub>" .. index .. "</sub>"
   if tag.selected then
-    item:get_children_by_id("tag")[1].markup = "<span foreground='" .. xrdb.color3 .. "'></span>"
+    item:get_children_by_id("tag")[1].markup = "<span foreground='" .. xrdb.color3 .. "'></span>" .. subIndex
   elseif #tag:clients() > 0 then
-    item:get_children_by_id("tag")[1].markup = "<span foreground='" .. xrdb.color6 .. "'></span>"
+    item:get_children_by_id("tag")[1].markup = "<span foreground='" .. xrdb.color6 .. "'></span>" .. subIndex
   else
-    item:get_children_by_id("tag")[1].markup = "<span foreground='" .. xrdb.color7 .. "'></span>"
+    item:get_children_by_id("tag")[1].markup = "<span foreground='" .. xrdb.color7 .. "'></span>" .. subIndex
   end
 end
 
@@ -34,13 +34,11 @@ local tag_list = function(s)
     },
     widget_template = {
       id = "tag",
-      font = "Roboto Medium 14",
+      font = utils.font(14),
       widget = wibox.widget.textbox,
-
       create_callback = function(self, c3, index, object)
         update_tag(self, c3, index)
       end,
-
       update_callback = function(self, c3, index, object)
         update_tag(self, c3, index)
       end
@@ -54,7 +52,7 @@ return function(s)
       tag_list(s),
       widget = wibox.container.margin,
       -- margins = dpi(5),
-      margins = { left= dpi(10), right = dpi(10)}
+      margins = { left = dpi(10), right = dpi(10) }
     },
     widget = wibox.container.background,
     bg = beautiful.bg_normal,

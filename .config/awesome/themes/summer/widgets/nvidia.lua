@@ -16,7 +16,7 @@ local function worker(user_args)
     text = "",
     align = 'center',
     valign = 'center',
-    forced_width = dpi(25),
+    forced_width = dpi(20),
     -- font = util.font_glyph(12),
     font = 'bootstrap-icons 12'
   }
@@ -26,7 +26,7 @@ local function worker(user_args)
     text = "---",
     align = "right",
     valign = "center",
-    forced_width = dpi(30),
+    forced_width = dpi(40),
     font = util.font(12),
   }
 
@@ -43,6 +43,8 @@ local function worker(user_args)
   return widget
 end
 
-return setmetatable(widget, { __call = function(_, ...)
-  return worker(...)
-end })
+return setmetatable(widget, {
+  __call = function(_, ...)
+    return worker(...)
+  end
+})

@@ -23,7 +23,7 @@ local function worker(user_args)
     text = "---",
     align = "right",
     valign = "center",
-    forced_width = dpi(30),
+    forced_width = dpi(40),
     font = util.font(12),
   }
 
@@ -37,6 +37,8 @@ local function worker(user_args)
   return widget
 end
 
-return setmetatable(widget, { __call = function(_, ...)
-  return worker(...)
-end })
+return setmetatable(widget, {
+  __call = function(_, ...)
+    return worker(...)
+  end
+})

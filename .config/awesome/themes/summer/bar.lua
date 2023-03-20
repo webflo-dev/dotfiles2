@@ -18,6 +18,9 @@ local bluetooth = require("themes.summer.widgets.bluetooth")
 local network = require("themes.summer.widgets.network")
 local nvidia = require("themes.summer.widgets.nvidia")
 
+local time2 = require("themes.summer.widgets.time2")
+-- local date2 = require("themes.summer.widgets.date2")
+
 -- Left
 local function left(s)
   return wibox.widget {
@@ -34,6 +37,8 @@ local function center(s)
   return wibox.widget {
     time(),
     date(),
+    -- time2(),
+    -- date2(),
     spacing = dpi(30),
     layout = wibox.layout.fixed.horizontal,
   }
@@ -63,7 +68,6 @@ end
 
 -- Bar
 local function get_bar(s)
-
   local bar = awful.wibar {
     position = 'top',
     type = 'dock',

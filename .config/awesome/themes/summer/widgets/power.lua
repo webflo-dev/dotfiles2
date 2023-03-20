@@ -38,7 +38,7 @@ local function worker()
     align = 'center',
     valign = 'center',
     forced_width = dpi(25),
-    font = util.font_glyph(14),
+    font = util.font_glyph(12),
   }
 
   widget = wibox.widget {
@@ -88,6 +88,8 @@ local function worker()
   return widget
 end
 
-return setmetatable(widget, { __call = function(_, ...)
-  return worker(...)
-end })
+return setmetatable(widget, {
+  __call = function(_, ...)
+    return worker(...)
+  end
+})

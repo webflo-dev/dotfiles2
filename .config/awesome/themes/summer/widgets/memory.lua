@@ -11,7 +11,6 @@ local box = require("themes.summer.widgets.base.box")
 local widget = {}
 
 local function worker(user_args)
-
   local icon_widget = wibox.widget {
     widget = wibox.widget.textbox,
     text = "",
@@ -26,8 +25,8 @@ local function worker(user_args)
     text = "---",
     align = "right",
     valign = "center",
+    forced_width = dpi(40),
     font = util.font(12),
-    forced_width = dpi(30),
   }
 
 
@@ -42,6 +41,8 @@ local function worker(user_args)
   return widget
 end
 
-return setmetatable(widget, { __call = function(_, ...)
-  return worker(...)
-end })
+return setmetatable(widget, {
+  __call = function(_, ...)
+    return worker(...)
+  end
+})
