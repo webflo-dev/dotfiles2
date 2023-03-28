@@ -1,3 +1,5 @@
+local utils = require("config.utils")
+
 return {
   {
     "theprimeagen/harpoon",
@@ -18,19 +20,22 @@ return {
           desc = "Toggle menu (harpoon)",
         },
         {
-          "<leader>hT", "<cmd>Telescope harpoon marks<cr>",
+          "<leader>hT",
+          "<cmd>Telescope harpoon marks<cr>",
           desc = "Toggle menu with preview (harpoon)",
         },
         {
-          "<tab>", function()
-          require("harpoon.ui").nav_next()
-        end,
+          "<tab>",
+          function()
+            require("harpoon.ui").nav_next()
+          end,
           desc = "Navigates to next mark "
         },
         {
-          "<S-tab>", function()
-          require("harpoon.ui").nav_prev()
-        end,
+          "<S-tab>",
+          function()
+            require("harpoon.ui").nav_prev()
+          end,
           desc = "Navigates to previous mark"
         },
         {
@@ -66,11 +71,11 @@ return {
     init = function()
       local wk = require("which-key")
       wk.register({
-        ["<leader>h"] = { name = "+harpoon" },
+            ["<leader>h"] = { name = "+harpoon" },
       })
     end,
     config = function(_, opts)
-      if (require("lazy.core.config").plugins["telescope.nvim"] ~= nil) then
+      if utils.has_plugin("telescope.nvim") then
         require("telescope").load_extension("harpoon")
       end
     end

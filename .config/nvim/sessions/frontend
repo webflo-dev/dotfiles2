@@ -13,32 +13,22 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +22 src/components/pages/PrivateSection/entitySections/VizModelSection/tabs/VizModelHomePage/Fields/Groups/List/_.tsx
-badd +6 src/components/pages/PrivateSection/entitySections/VizModelSection/tabs/VizModelHomePage/Fields/Groups/_.tsx
-badd +18 src/components/pages/PrivateSection/entitySections/VizModelSection/tabs/VizModelHomePage/Fields/Groups/List/constants.ts
-badd +23 src/components/system/BaseCount/_.tsx
-badd +123 src/components/rich/LazyTable/_.tsx
-badd +44 src/components/rich/AssetsList/_.tsx
-badd +18 src/components/rich/AssetsList/List.tsx
-badd +34 src/components/system/LoadMoreList/_.tsx
-badd +10 src/components/rich/LazyTable/specialRows/Loading.tsx
-badd +47 src/components/system/Accordion/Collapse.tsx
-badd +77 src/components/pages/PrivateSection/MetadataEditor/Tables/TablesList/_.tsx
-badd +53 src/components/pages/PrivateSection/MetadataEditor/Tables/TablesList/Row.tsx
-badd +8 src/models/DashboardFieldGroup.ts
-badd +39 src/models/index.ts
+badd +1 ~/dev/castor/frontend/src/components/pages/PrivateSection/entitySections/VizModelSection/tabs/VizModelHomePage/Fields/GroupList.tsx
+badd +1 ~/dev/castor/frontend/src/components/pages/PrivateSection/entitySections/VizModelSection/tabs/VizModelHomePage/Fields/_.tsx
+badd +1 ~/dev/castor/frontend/
+badd +1 ~/.config/kitty/kitty.conf
 argglobal
 %argdel
-edit src/components/pages/PrivateSection/MetadataEditor/Tables/TablesList/Row.tsx
+$argadd ~/dev/castor/frontend/
+edit ~/.config/kitty/kitty.conf
 argglobal
-balt src/models/index.ts
-let s:l = 60 - ((53 * winheight(0) + 44) / 88)
+balt ~/dev/castor/frontend/src/components/pages/PrivateSection/entitySections/VizModelSection/tabs/VizModelHomePage/Fields/_.tsx
+let s:l = 19 - ((18 * winheight(0) + 43) / 87)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 60
-normal! 019|
-if exists(':tcd') == 2 | tcd ~/dev/castor/frontend | endif
+keepjumps 19
+normal! 016|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

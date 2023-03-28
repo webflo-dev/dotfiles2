@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/.config/zsh
+cd ~/.config/zsh_WIP
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,21 +13,111 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +17 ~/.config/zsh/.zshrc
-badd +0 ./
-badd +32 ~/.config/zsh/.zshenv
+badd +113 ~/.config/zsh/.zshrc
+badd +1 ./
+badd +99 ~/.config/zsh/.zshenv
+badd +38 ~/.config/zsh/core.zsh
+badd +44 aliases.zsh
+badd +1 functions.zsh
+badd +1 ~/.config/zsh/plugins.zsh
 argglobal
 %argdel
 $argadd ./
 edit ~/.config/zsh/.zshrc
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+wincmd w
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe '1resize ' . ((&lines * 43 + 45) / 90)
+exe 'vert 1resize ' . ((&columns * 102 + 102) / 204)
+exe '2resize ' . ((&lines * 44 + 45) / 90)
+exe 'vert 2resize ' . ((&columns * 102 + 102) / 204)
+exe '3resize ' . ((&lines * 43 + 45) / 90)
+exe 'vert 3resize ' . ((&columns * 101 + 102) / 204)
+exe '4resize ' . ((&lines * 44 + 45) / 90)
+exe 'vert 4resize ' . ((&columns * 101 + 102) / 204)
 argglobal
-balt ~/.config/zsh/.zshenv
-let s:l = 19 - ((13 * winheight(0) + 12) / 24)
+balt ~/.config/zsh/plugins.zsh
+let s:l = 113 - ((21 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 19
-normal! 091|
+keepjumps 113
+let s:c = 7 - ((-40 * winwidth(0) + 51) / 102)
+if s:c > 0
+  exe 'normal! ' . s:c . '|zs' . 7 . '|'
+else
+  normal! 07|
+endif
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/.config/zsh/plugins.zsh", ":p")) | buffer ~/.config/zsh/plugins.zsh | else | edit ~/.config/zsh/plugins.zsh | endif
+if &buftype ==# 'terminal'
+  silent file ~/.config/zsh/plugins.zsh
+endif
+balt ~/.config/zsh/.zshrc
+let s:l = 11 - ((10 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 11
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("aliases.zsh", ":p")) | buffer aliases.zsh | else | edit aliases.zsh | endif
+if &buftype ==# 'terminal'
+  silent file aliases.zsh
+endif
+balt functions.zsh
+let s:l = 44 - ((21 * winheight(0) + 21) / 43)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 44
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("functions.zsh", ":p")) | buffer functions.zsh | else | edit functions.zsh | endif
+if &buftype ==# 'terminal'
+  silent file functions.zsh
+endif
+balt aliases.zsh
+let s:l = 16 - ((15 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 16
+normal! 0
+wincmd w
+2wincmd w
+exe '1resize ' . ((&lines * 43 + 45) / 90)
+exe 'vert 1resize ' . ((&columns * 102 + 102) / 204)
+exe '2resize ' . ((&lines * 44 + 45) / 90)
+exe 'vert 2resize ' . ((&columns * 102 + 102) / 204)
+exe '3resize ' . ((&lines * 43 + 45) / 90)
+exe 'vert 3resize ' . ((&columns * 101 + 102) / 204)
+exe '4resize ' . ((&lines * 44 + 45) / 90)
+exe 'vert 4resize ' . ((&columns * 101 + 102) / 204)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -35,6 +125,8 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)

@@ -6,8 +6,6 @@ return {
   --   config = true,
   -- },
 
-  {
-    "dnlhc/glance.nvim",
-    config = true,
-  }
+
+  { "brenoprata10/nvim-highlight-colors" },
 }

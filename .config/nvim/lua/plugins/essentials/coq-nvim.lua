@@ -16,6 +16,9 @@ return {
           icons = {
             mappings = require("config.icons").kinds
           }
+        },
+        keymap = {
+          jump_to_mark = ""
         }
       }
     end

@@ -73,7 +73,34 @@ return {
               require("neo-tree").close_all()
             end
           },
-        }
+        },
+        window = {
+          mappings = {
+                ["<C-s>"] = "open_split",
+                ["<C-v>"] = "open_vsplit",
+                ["<C-t>"] = "open_tabnew",
+                ["P"] = { "toggle_preview", config = { use_float = false } },
+                ["a"] = {
+              "add",
+              -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
+              -- some commands may take optional config options, see `:h neo-tree-mappings` for details
+              config = {
+                show_path = "relative" -- "none", "relative", "absolute"
+              }
+            },
+                ["m"] = {
+              "move", config = {
+              show_path = "relative"
+            }
+            },
+                ["c"] = {
+              "copy",
+              config = {
+                show_path = "relative" -- "none", "relative", "absolute"
+              }
+            }
+          }
+        },
       }
     end
   }

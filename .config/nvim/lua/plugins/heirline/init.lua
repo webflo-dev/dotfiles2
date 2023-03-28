@@ -1,3 +1,5 @@
+local utils = require("config.utils")
+
 local os_sep = package.config:sub(1, 1)
 
 vim.api.nvim_create_autocmd("User", {
@@ -117,7 +119,7 @@ return {
               no = "O-P",
               nov = "O-P",
               noV = "O-P",
-              ["no\22"] = "O-P",
+                  ["no\22"] = "O-P",
               niI = "NORMAL",
               niR = "NORMAL",
               niV = "NORMAL",
@@ -126,11 +128,11 @@ return {
               vs = "VISUAL",
               V = "VISUAL LINES",
               Vs = "VISUAL LINES",
-              ["\22"] = "VISUAL BLOCK", -- CTRL-V
-              ["\22s"] = "VISUAL BLOCK", -- CTRL-Vs
+                  ["\22"] = "VISUAL BLOCK",  -- CTRL-V
+                  ["\22s"] = "VISUAL BLOCK", -- CTRL-Vs
               s = "SELECT",
               S = "SELECT",
-              ["\19"] = "BLOCK", -- CTRL-S
+                  ["\19"] = "BLOCK", -- CTRL-S
               i = "INSERT",
               ic = "INSERT",
               ix = "INSERT",
@@ -144,22 +146,22 @@ return {
               cv = "COMMAND",
               r = "ENTER",
               rm = "MORE",
-              ["r?"] = "CONFIRM",
-              ["!"] = "SHELL",
+                  ["r?"] = "CONFIRM",
+                  ["!"] = "SHELL",
               t = "TERMINAL",
-              ["null"] = "NONE",
+                  ["null"] = "NONE",
             },
             colors = {
               NORMAL = { fg = colors.blue },
               INSERT = { fg = colors.back, bg = colors.green },
               VISUAL = { fg = colors.back, bg = colors.cyan },
-              ["VISUAL LINES"] = { fg = colors.back, bg = colors.cyan },
-              ["VISUAL BLOCK"] = { fg = colors.back, bg = colors.cyan },
+                  ["VISUAL LINES"] = { fg = colors.back, bg = colors.cyan },
+                  ["VISUAL BLOCK"] = { fg = colors.back, bg = colors.cyan },
               COMMAND = { fg = colors.back, bg = colors.yellow },
               SELECT = { fg = colors.back, bg = colors.purple },
               BLOCK = { fg = colors.back, bg = colors.purple },
               REPLACE = { fg = colors.back, bg = colors.orange },
-              ["V-REPLACE"] = { fg = colors.back, bg = colors.orange },
+                  ["V-REPLACE"] = { fg = colors.back, bg = colors.orange },
               SHELL = { fg = colors.back, bg = colors.red },
               TERMINAL = { fg = colors.back, bg = colors.red },
             },
@@ -491,24 +493,24 @@ return {
         heirline.surround(
           { "", "" },
           nil, {
-          -- :help 'statusline'
-          -- ------------------
-          -- %-2 : make item takes at least 2 cells and be left justified
-          -- %l  : current line number
-          -- %L  : number of lines in the buffer
-          -- %c  : column number
-          -- %V  : virtual column number as -{num}.  Not displayed if equal to '%c'.
-          -- provider = '%9(%l:%L%) | %-3(%c%V%) ',
-          provider = '%3(%l%):%-3(%c%)▎%L',
-          -- provider = '%3(%l%):%-3(%c%)%L',
-          -- provider = '%3(%l%):%-3(%c%)▎%L▎%3(%P%)',
-          -- provider = '%3(%l%):%L|%-3(%c%)',
-          hl = {
-            fg = heirline.get_highlight('Statusline').bg,
-            bg = heirline.get_highlight('Statusline').fg,
-            -- bold = true,
-          },
-        }),
+            -- :help 'statusline'
+            -- ------------------
+            -- %-2 : make item takes at least 2 cells and be left justified
+            -- %l  : current line number
+            -- %L  : number of lines in the buffer
+            -- %c  : column number
+            -- %V  : virtual column number as -{num}.  Not displayed if equal to '%c'.
+            -- provider = '%9(%l:%L%) | %-3(%c%V%) ',
+            provider = '%3(%l%):%-3(%c%)▎%L',
+            -- provider = '%3(%l%):%-3(%c%)%L',
+            -- provider = '%3(%l%):%-3(%c%)▎%L▎%3(%P%)',
+            -- provider = '%3(%l%):%L|%-3(%c%)',
+            hl = {
+              fg = heirline.get_highlight('Statusline').bg,
+              bg = heirline.get_highlight('Statusline').fg,
+              -- bold = true,
+            },
+          }),
         Space,
       }
 
@@ -521,9 +523,9 @@ return {
       local CurrentSession = {
         condition = function()
           return
-              (require("lazy.core.config").plugins["nvim-sessions"] ~= nil
+              utils.has_plugin("nvim-sessions")
               and
-              require("nvim-sessions").current_session_name() ~= nil)
+              require("nvim-sessions").current_session_name() ~= nil
         end,
         heirline.surround(
           { "", "" },
@@ -641,7 +643,8 @@ return {
             vim.opt_local.winbar = nil
           end
         },
-        { -- A special winbar for terminals
+        {
+          -- A special winbar for terminals
           condition = function()
             return conditions.buffer_matches({ buftype = { "terminal" } })
           end,
@@ -651,11 +654,13 @@ return {
             TerminalName,
           }),
         },
-        { -- An inactive winbar for regular files
+        {
+          -- An inactive winbar for regular files
           condition = function()
             return not conditions.is_active()
           end,
-          heirline.surround({ "", "" }, colors.blue, { hl = { fg = heirline.get_highlight('Statusline').fg, force = true }, FileNameBlock }),
+          heirline.surround({ "", "" }, colors.blue,
+            { hl = { fg = heirline.get_highlight('Statusline').fg, force = true }, FileNameBlock }),
         },
         -- A winbar for regular files
         heirline.surround({ "", "" }, colors.blue, { FileNameBlock }),

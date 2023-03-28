@@ -7,29 +7,6 @@ return {
       -- { 'nvim-telescope/telescope-live-grep-args.nvim' },
     },
     cmd = "Telescope",
-    keys = {
-      { "<leader>,",  "<cmd>Telescope buffers show_all_buffers=true<cr>",   desc = "Show Buffer" },
-      { "<leader>/",  "<cmd>Telescope live_grep<cr>",                       desc = "Find in Files (Grep)" },
-      { "<leader>:",  "<cmd>Telescope command_history<cr>",                 desc = "Command History" },
-
-      -- find
-      { "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>",          desc = "Find files" },
-      { "<leader>fb", "<cmd>Telescope buffers show_all_buffers=true<cr>",   desc = "Buffers" },
-      { "<leader>fr", "<cmd>Telescope oldfiles<cr>",                        desc = "Recent" },
-      { "<leader>ft", "<cmd>Telescope buffers<cr>",                         desc = "Find tabs" },
-      { "<leader>fw", "<cmd>Telescope grep_string<cr>",                     desc = "Search word" },
-
-      -- git
-      { "<leader>gf", "<cmd>Telescope git_files<cr>",                       desc = "git files" },
-      { "<leader>gc", "<cmd>Telescope git_commits<CR>",                     desc = "git commits" },
-      { "<leader>gs", "<cmd>Telescope git_status<CR>",                      desc = "git status" },
-      { "<leader>gt", "<cmd>Telescope git_stash<CR>",                       desc = "git sstashes" },
-      { "<leader>gb", "<cmd>Telescope git_branches<CR>",                    desc = "git branches" },
-
-      -- misc.
-      { "<leader>uC", "<cmd>Telescope colorscheme enable_preview=true<cr>", desc = "Colorscheme with preview" },
-
-    },
     opts = {
       defaults = {
         prompt_prefix = " ",
@@ -61,27 +38,27 @@ return {
             -- ["<c-t>"] = function(...)
             --   return require("trouble.providers.telescope").open_with_trouble(...)
             -- end,
-            ["<a-i>"] = function()
+                ["<a-i>"] = function()
               require("telescope.builtin").find_files({ no_ignore = true })
             end,
-            ["<a-h>"] = function()
+                ["<a-h>"] = function()
               require("telescope.builtin").find_files({ hidden = true })
             end,
-            ["<C-Down>"] = function(...)
+                ["<C-Down>"] = function(...)
               return require("telescope.actions").cycle_history_next(...)
             end,
-            ["<C-Up>"] = function(...)
+                ["<C-Up>"] = function(...)
               return require("telescope.actions").cycle_history_prev(...)
             end,
-            ["<C-f>"] = function(...)
+                ["<C-f>"] = function(...)
               return require("telescope.actions").preview_scrolling_down(...)
             end,
-            ["<C-b>"] = function(...)
+                ["<C-b>"] = function(...)
               return require("telescope.actions").preview_scrolling_up(...)
             end,
           },
           n = {
-            ["q"] = function(...)
+                ["q"] = function(...)
               return require("telescope.actions").close(...)
             end,
           },

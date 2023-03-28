@@ -19,91 +19,50 @@ local function format()
   })
 end
 
-local function diagnostic_goto(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-  severity = severity and vim.diagnostic.severity[severity] or nil
-  return function()
-    go({ severity = severity })
-  end
-end
 
 
-local function get_lsp_keymaps()
-  local keys_fzflua = {
-    { "<leader>cd", vim.diagnostic.open_float,               desc = "Line Diagnostics" },
-    { "]d",         diagnostic_goto(true),                   desc = "Next Diagnostic" },
-    { "[d",         diagnostic_goto(false),                  desc = "Prev Diagnostic" },
-    { "]e",         diagnostic_goto(true, "ERROR"),          desc = "Next Error" },
-    { "[e",         diagnostic_goto(false, "ERROR"),         desc = "Prev Error" },
-    { "]w",         diagnostic_goto(true, "WARN"),           desc = "Next Warning" },
-    { "[w",         diagnostic_goto(false, "WARN"),          desc = "Prev Warning" },
-    { "K",          vim.lsp.buf.hover,                       desc = "Hover" },
-    { "gK",         vim.lsp.buf.signature_help,              desc = "Signature Help",                has =
-    "signatureHelp" },
-    { "<c-k>",      vim.lsp.buf.signature_help,              desc = "Signature Help",                mode = "i",
-                                                                                                                             has =
-      "signatureHelp" },
-    { "<leader>ca", "<cmd>FzfLua lsp_code_actions<cr>",      desc = "Code Action",                   mode = { "n", "v" },
-                                                                                                                             has =
-      "codeAction" },
-    { "<leader>cr", vim.lsp.buf.rename,                      desc = "Rename",                        has = "rename" },
-    { "gd",         "<cmd>FzfLua lsp_definitions<cr>",       desc = "Goto Definition" },
-    { "gD",         "<cmd>FzfLua lsp_declarations<cr>",      desc = "Goto Declaration" },
-    { "gt",         "<cmd>FzfLua lsp_typedefs<cr>",          desc = "Goto Type Definition" },
-    { "gi",         "<cmd>FzfLua lsp_implementations<cr>",   desc = "Goto Implementation" },
-    { "gh",         "<cmd>FzfLua lsp_references<cr>",        desc = "References" },
-    { "gr",         "<cmd>FzfLua lsp_references<cr>",        desc = "References" },
-    { "gci",        "<cmd>FzfLua lsp_incoming_calls<cr>",    desc = "Incoming calls" },
-    { "gco",        "<cmd>FzfLua lsp_outgoing_calls<cr>",    desc = "Outgoing calls" },
-    { "gs",         "<cmd>FzfLua lsp_document_symbols<cr>",  desc = "Symbols" },
+local function get_lsp_keymaps(buffer)
+  local keymaps = require("config.commands").get_commands()
+  local functionOrCommand = require("config.utils").functionOrCommand
+  local wk = require("which-key")
 
-    -- Trouble
-    { "td",         "<cmd>Trouble lsp_definitions<cr>",      desc = "Goto Definition (trouble)" },
-    { "ti",         "<cmd>Trouble lsp_implementations<cr>",  desc = "Goto Implementation (trouble)" },
-    { "th",         "<cmd>Trouble lsp_references<cr>",       desc = "References (trouble)" },
-    { "tt",         "<cmd>Trouble lsp_type_definitions<cr>", desc = "Goto Type Definition (trouble)" },
-  }
+  local function keybind(keys, category)
+    return function(bind, action, description)
+      local cmd = functionOrCommand(keymaps[category][action])
+      if cmd == nil then
+        return
+      end
 
-  local keys_telescope = {
-    { "<leader>cd", vim.diagnostic.open_float,                 desc = "Line Diagnostics" },
-    { "]d",         diagnostic_goto(true),                     desc = "Next Diagnostic" },
-    { "[d",         diagnostic_goto(false),                    desc = "Prev Diagnostic" },
-    { "]e",         diagnostic_goto(true, "ERROR"),            desc = "Next Error" },
-    { "[e",         diagnostic_goto(false, "ERROR"),           desc = "Prev Error" },
-    { "]w",         diagnostic_goto(true, "WARN"),             desc = "Next Warning" },
-    { "[w",         diagnostic_goto(false, "WARN"),            desc = "Prev Warning" },
-    { "K",          vim.lsp.buf.hover,                         desc = "Hover" },
-    { "gK",         vim.lsp.buf.signature_help,                desc = "Signature Help",                has =
-    "signatureHelp" },
-    { "<c-k>",      vim.lsp.buf.signature_help,                desc = "Signature Help",                mode = "i",
-                                                                                                                               has =
-      "signatureHelp" },
-    { "<leader>ca", vim.lsp.buf.code_action,                   desc = "Code Action",                   mode = { "n", "v" },
-                                                                                                                               has =
-      "codeAction" },
-    { "<leader>cr", vim.lsp.buf.rename,                        desc = "Rename",                        has = "rename" },
-    { "gd",         "<cmd>Telescope lsp_definitions<cr>",      desc = "Goto Definition" },
-    { "gD",         vim.lsp.buf.declaration,                   desc = "Goto Declaration" },
-    { "gt",         "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definition" },
-    { "gi",         "<cmd>Telescope lsp_implementations<cr>",  desc = "Goto Implementation" },
-    { "gh",         "<cmd>Telescope lsp_references<cr>",       desc = "References" },
-    { "gr",         "<cmd>Telescope lsp_references<cr>",       desc = "References" },
-    { "gci",        "<cmd>Telescope lsp_incoming_calls<cr>",   desc = "Incoming calls" },
-    { "gco",        "<cmd>Telescope lsp_outgoing_calls<cr>",   desc = "Outgoing calls" },
-    { "gs",         "<cmd>Telescope lsp_document_symbols<cr>", desc = "Symbols" },
-
-    -- Trouble
-    { "td",         "<cmd>Trouble lsp_definitions<cr>",        desc = "Goto Definition (trouble)" },
-    { "ti",         "<cmd>Trouble lsp_implementations<cr>",    desc = "Goto Implementation (trouble)" },
-    { "th",         "<cmd>Trouble lsp_references<cr>",         desc = "References (trouble)" },
-    { "tt",         "<cmd>Trouble lsp_type_definitions<cr>",   desc = "Goto Type Definition (trouble)" },
-  }
-
-  if (require("lazy.core.config").plugins["telescope.nvim"] ~= nil) then
-    return keys_telescope
+      table.insert(keys, { bind, cmd, desc = description })
+    end
   end
 
-  return keys_fzflua
+
+  local lsp_keys = {}
+
+  -- diagnostics
+  local keybind_diagnostics = keybind(lsp_keys, "diagnostics")
+  keybind_diagnostics("<leader>cd", "show_diagnostic", "Show line diagnostics")
+  keybind_diagnostics("]d", "next_diagnostic", "Next diagnostic")
+  keybind_diagnostics("[d", "previous_diagnostic", "Previous diagnostic")
+
+  -- LSP
+  wk.register({ ["<leader>c"] = { name = "Code", buffer = buffer } })
+  local keybind_lsp = keybind(lsp_keys, "lsp")
+  keybind_lsp("K", "hover", "Hover")
+  keybind_lsp("gK", "signature_help", "Signature Help")
+  keybind_lsp("<leader>ca", "code_action", "Code action")
+  keybind_lsp("<leader>cr", "rename", "Rename")
+  keybind_lsp("gd", "definition", "Go to definition")
+  keybind_lsp("gD", "declaration", "Go to declaration")
+  keybind_lsp("gr", "references", "Go to reference")
+  keybind_lsp("gt", "type_definition", "Go to type definition")
+  keybind_lsp("gi", "implementation", "Go to implementation")
+  keybind_lsp("gci", "incoming_calls", "Incoming calls")
+  keybind_lsp("gco", "outgoing_calls", "Outgoing calls")
+  keybind_lsp("gs", "document_symbol", "Document symbols")
+
+  return lsp_keys
 end
 
 
@@ -132,7 +91,7 @@ function M.attach_keymaps(client, buffer)
   local Keys = require("lazy.core.handler.keys")
   local keymaps = {}
 
-  for _, value in ipairs(get_lsp_keymaps()) do
+  for _, value in ipairs(get_lsp_keymaps(buffer)) do
     local keys = Keys.parse(value)
     if keys[2] == vim.NIL or keys[2] == false then
       keymaps[keys.id] = nil

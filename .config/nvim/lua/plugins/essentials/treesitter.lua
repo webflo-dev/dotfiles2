@@ -114,23 +114,23 @@ return {
       },
       textobjects = {
         lsp_interop = {
-          enable = true,
+          enable = false,
           border = "rounded",
           peek_definition_code = {
-            ["<leader>df"] = "@function.outer",
-            ["<leader>dF"] = "@class.outer",
+                ["<leader>pf"] = "@function.outer",
+                ["<leader>pF"] = "@class.outer",
           },
         },
         select = {
           enable = true,
           lookahead = true,
           keymaps = {
-            ["if"] = "@function.inner",
-            ["af"] = "@function.outer",
-            ["ic"] = "@class.inner",
-            ["ac"] = "@class.outer",
-            ['ia'] = '@parameter.inner',
-            ['aa'] = '@parameter.outer',
+                ["if"] = "@function.inner",
+                ["ic"] = "@class.inner",
+                ['ia'] = '@parameter.inner',
+                ["af"] = "@function.outer",
+                ["ac"] = "@class.outer",
+                ['aa'] = '@parameter.outer',
           },
           --selection_modes = {
           --  ['@parameter.outer'] = 'v', -- charwise
@@ -142,29 +142,36 @@ return {
           enable = true,
           set_jumps = true, -- whether to set jumps in the jumplist
           goto_next_start = {
-            [']m'] = '@function.outer',
-            [']]'] = '@class.outer',
+                [']m'] = '@function.outer',
+                ["]o"] = '@loop.*',
+            -- [']]'] = '@class.outer',
           },
           goto_next_end = {
-            [']M'] = '@function.outer',
-            [']['] = '@class.outer',
+                [']M'] = '@function.outer',
+            -- [']['] = '@class.outer',
           },
           goto_previous_start = {
-            ['[m'] = '@function.outer',
-            ['[['] = '@class.outer',
+                ['[m'] = '@function.outer',
+            -- ['[['] = '@class.outer',
           },
           goto_previous_end = {
-            ['[M'] = '@function.outer',
-            ['[]'] = '@class.outer',
+                ['[M'] = '@function.outer',
+            -- ['[]'] = '@class.outer',
           },
+          goto_next = {
+                ["]g"] = "@conditional.outer",
+          },
+          goto_previous = {
+                ["[g"] = "@conditional.outer",
+          }
         },
         swap = {
-          enable = true,
+          enable = false,
           swap_next = {
-            ['<leader>a'] = '@parameter.inner',
+                ['<leader>a'] = '@parameter.inner',
           },
           swap_previous = {
-            ['<leader>A'] = '@parameter.inner',
+                ['<leader>A'] = '@parameter.inner',
           },
         },
       },

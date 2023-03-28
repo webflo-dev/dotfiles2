@@ -1,3 +1,5 @@
+local utils = require("config.utils")
+
 return {
   {
     "williamboman/mason.nvim",
@@ -24,11 +26,6 @@ return {
     end,
   },
 
-  -- {
-  --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-  --   config = true
-  -- },
-  --
 
   {
     "neovim/nvim-lspconfig",
@@ -69,7 +66,7 @@ return {
         "bashls",
         "cssls",
         "eslint",
-        --"graphql",
+        "graphql",
         "html",
         "jsonls",
         "lua_ls",
@@ -113,7 +110,7 @@ return {
       -- setup LSP servers
       local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-      if require("lazy.core.config").plugins["cmp-nvim-lsp"] ~= nil then
+      if utils.has_plugin("cmp-nvim-lsp") then
         capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
       end
 
@@ -139,7 +136,7 @@ return {
           end
         end
 
-        if require("lazy.core.config").plugins["coq_nvim"] ~= nil then
+        if utils.has_plugin("coq_nvim") then
           require("lspconfig")[server].setup(require("coq").lsp_ensure_capabilities(server_opts))
         else
           require("lspconfig")[server].setup(server_opts)

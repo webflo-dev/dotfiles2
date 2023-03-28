@@ -13,42 +13,19 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +6 init.lua
-badd +30 lua/plugins/essentials/treesitter.lua
-badd +13 lua/plugins/essentials/colorscheme.lua
-badd +58 lua/plugins/essentials/git.lua
-badd +261 lua/config/keymaps.lua
-badd +46 custom_plugins/dracula_pro/INSTALL.md
-badd +4 lua/plugins/misc.lua
-badd +52 lua/plugins/essentials/lsp/init.lua
-badd +1 lua/plugins/essentials/lsp/servers/eslint.lua
-badd +14 lua/plugins/indent-blankline.lua
-badd +1 lua/plugins/mind.lua
-badd +1 lua/plugins/caskey.lua__
+badd +30 lua/plugins/essentials/which-key.lua
+badd +50 ~/.config/nvim/lua/plugins/essentials/lsp/utils.lua
+badd +1 \<
 argglobal
 %argdel
-edit lua/config/keymaps.lua
-let s:save_splitbelow = &splitbelow
-let s:save_splitright = &splitright
-set splitbelow splitright
-let &splitbelow = s:save_splitbelow
-let &splitright = s:save_splitright
-wincmd t
-let s:save_winminheight = &winminheight
-let s:save_winminwidth = &winminwidth
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
+edit lua/plugins/essentials/which-key.lua
 argglobal
-balt custom_plugins/dracula_pro/INSTALL.md
-let s:l = 261 - ((43 * winheight(0) + 43) / 87)
+let s:l = 30 - ((29 * winheight(0) + 43) / 87)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 261
-normal! 016|
-if exists(':tcd') == 2 | tcd ~/.config/nvim | endif
+keepjumps 30
+normal! 012|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -56,8 +33,6 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
-let &winminheight = s:save_winminheight
-let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)

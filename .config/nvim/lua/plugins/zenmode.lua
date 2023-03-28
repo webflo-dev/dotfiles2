@@ -1,3 +1,5 @@
+local utils = require("config.utils")
+
 return {
   { "folke/twilight.nvim" },
 
@@ -24,13 +26,13 @@ return {
       },
       -- callback where you can add custom code when the Zen window opens
       on_open = function(win)
-        if require("lazy.core.config").plugins["pets.nvim"] ~= nil then
+        if utils.has_plugin("pets.nvim") then
           vim.cmd("PetsHideToggle")
         end
       end,
       -- callback where you can add custom code when the Zen window closes
       on_close = function()
-        if require("lazy.core.config").plugins["pets.nvim"] ~= nil then
+        if utils.has_plugin("pets.nvim") then
           vim.cmd("PetsHideToggle")
         end
       end,
