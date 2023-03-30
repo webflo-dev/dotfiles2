@@ -91,6 +91,7 @@ return {
           lsp_utils.attach_keymaps(client, buffer)
           -- lsp_utils.attach_popup_diagnostics(client, buffer)
           lsp_utils.attach_highligh_reference(client, buffer)
+          require("lsp-inlayhints").on_attach(client, buffer)
         end,
       })
 
@@ -160,4 +161,21 @@ return {
   --     }
   --   end,
   -- },
+
+  {
+    "lvimuser/lsp-inlayhints.nvim",
+    config = true,
+    init = function()
+      vim.api.nvim_create_user_command("LspInlayhintsToggle", function()
+        require('lsp-inlayhints').toggle()
+      end, {
+        nargs = 0
+      })
+      vim.api.nvim_create_user_command("LspInlayhintsReset", function()
+        require('lsp-inlayhints').reset()
+      end, {
+        nargs = 0
+      })
+    end
+  },
 }
