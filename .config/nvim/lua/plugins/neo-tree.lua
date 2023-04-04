@@ -6,9 +6,6 @@ return {
       { "MunifTanjim/nui.nvim", lazy = true },
     },
     cmd = "Neotree",
-    keys = {
-      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Explorer" },
-    },
     deactivate = function()
       vim.cmd([[Neotree close]])
     end,
@@ -76,11 +73,11 @@ return {
         },
         window = {
           mappings = {
-                ["<C-s>"] = "open_split",
-                ["<C-v>"] = "open_vsplit",
-                ["<C-t>"] = "open_tabnew",
-                ["P"] = { "toggle_preview", config = { use_float = false } },
-                ["a"] = {
+            ["<C-s>"] = "open_split",
+            ["<C-v>"] = "open_vsplit",
+            ["<C-t>"] = "open_tabnew",
+            ["P"] = { "toggle_preview", config = { use_float = false } },
+            ["a"] = {
               "add",
               -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
               -- some commands may take optional config options, see `:h neo-tree-mappings` for details
@@ -88,12 +85,12 @@ return {
                 show_path = "relative" -- "none", "relative", "absolute"
               }
             },
-                ["m"] = {
+            ["m"] = {
               "move", config = {
               show_path = "relative"
             }
             },
-                ["c"] = {
+            ["c"] = {
               "copy",
               config = {
                 show_path = "relative" -- "none", "relative", "absolute"

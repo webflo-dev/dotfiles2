@@ -13,22 +13,20 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +16 themes/summer/theme.lua
+badd +5 ~/.config/awesome/rc.lua
+badd +9 ~/.config/awesome/themes/summer/init.lua
 badd +40 ~/.config/awesome/themes/summer/bar.lua
-badd +11 ~/.config/awesome/themes/summer/notification.lua
-badd +4 themes/summer/widgets/tag_list.lua
-badd +116 modules/bling/module/scratchpad.lua
-badd +12 core/notifications.lua
 argglobal
 %argdel
-edit core/notifications.lua
+$argadd ./
+edit ~/.config/awesome/themes/summer/init.lua
 argglobal
-balt modules/bling/module/scratchpad.lua
-let s:l = 30 - ((29 * winheight(0) + 44) / 88)
+balt ~/.config/awesome/rc.lua
+let s:l = 9 - ((8 * winheight(0) + 43) / 87)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 30
+keepjumps 9
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

@@ -91,8 +91,10 @@ return {
 
       local opts = {
         desc         = "match telescope default highlights|keybinds",
+        fzf_bin      = "sk",
         fzf_opts     = {
-              ["--marker"] = "+"
+          -- ["--marker"] = "+",
+              ["--keep-right"] = "",
         },
         winopts      = {
           width   = 0.8,
@@ -179,7 +181,8 @@ return {
           },
           buffers = {
                 ["default"] = actions.buf_edit,
-                ["ctrl-x"] = actions.buf_split,
+                ["ctrl-d"] = actions.buf_split,
+                ["ctrl-s"] = actions.buf_split,
                 ["ctrl-v"] = actions.buf_vsplit,
                 ["ctrl-t"] = actions.buf_tabedit,
           },

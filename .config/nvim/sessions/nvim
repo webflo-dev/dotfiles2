@@ -13,19 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +50 lua/plugins/essentials/lsp/utils.lua
-badd +13 lua/plugins/essentials/trouble.lua
-badd +40 lua/plugins/essentials/which-key.lua
-badd +226 lua/plugins/essentials/fzf.lua
-badd +17 lua/config/icons.lua
-badd +7 init.lua
-badd +12 lua/config/init.lua
-badd +1 lua/plugins/essentials/coq-nvim.lua__
-badd +169 lua/plugins/essentials/lsp/init.lua
-badd +13 lua/plugins/essentials/lsp/servers/tsserver.lua
+badd +9 custom_plugins/nvim-undo/lua/nvim-undo/init.lua
+badd +2 lua/plugins/nvim-undo.lua
+badd +1 ~/.config/nvim
+badd +7 custom_plugins/nvim-undo/lua/nvim-undo/commands.lua
+badd +26 custom_plugins/nvim-undo/lua/nvim-undo/core.lua
+badd +22 ~/.config/nvim/custom_plugins/nvim-undo/lua/nvim-undo/time-ago.lua
+badd +7 lua/plugins/essentials/lsp/servers/tsserver.lua
+badd +129 ~/.config/nvim/lua/plugins/essentials/lsp/init.lua
 argglobal
 %argdel
-edit lua/plugins/essentials/lsp/init.lua
+$argadd ~/.config/nvim
+edit ~/.config/nvim/lua/plugins/essentials/lsp/init.lua
 wincmd t
 let s:save_winminheight = &winminheight
 let s:save_winminwidth = &winminwidth
@@ -34,13 +33,12 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-balt lua/plugins/essentials/lsp/servers/tsserver.lua
-let s:l = 169 - ((83 * winheight(0) + 43) / 87)
+let s:l = 139 - ((21 * winheight(0) + 19) / 39)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 169
-normal! 06|
+keepjumps 139
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

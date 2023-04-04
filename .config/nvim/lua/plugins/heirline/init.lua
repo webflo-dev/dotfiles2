@@ -289,6 +289,34 @@ return {
       }
 
 
+      local Codeium = {
+        condition = function() return utils.has_plugin("codeium.vim") end,
+        init = function(self)
+          self.status = vim.fn["codeium#GetStatusString"]()
+        end,
+        heirline.surround(
+          { "", "" },
+          colors.fg_gutter,
+          {
+            provider = function(self)
+              return " " .. self.status
+            end,
+            hl = function(self)
+              local hl = {
+                fg = heirline.get_highlight('Statusline').fg,
+                bg = colors.fg_gutter,
+              }
+              if self.status == " ON" then
+                hl.fg = colors.green
+              elseif self.status == " * " then
+                hl.fg = colors.orange
+              end
+              return hl
+            end,
+          }
+        ),
+        Space
+      }
 
       local Diagnostics = {
         condition = conditions.has_diagnostics,
@@ -574,6 +602,8 @@ return {
           SearchResults,
           CurrentSession,
           FileNameBlock,
+          Space,
+          Codeium,
           Space(4),
           Align,
           Diagnostics,

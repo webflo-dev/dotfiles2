@@ -13,25 +13,39 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +62 src/app/api/private/resolvers/dashboardField/resolver.ts
-badd +11 src/app/api/private/useCases/user/viewer/dashboardField/getGroups.ts
-badd +47 src/app/repositories/dashboardField/repository.ts
-badd +14 src/app/api/private/outputs/dashboardFields/DashboardFieldGroup.ts
-badd +39 src/app/api/private/inputs/dashboardField/GetDashboardFieldsScope.ts
-badd +1 ~/dev/castor/backend
-badd +55 src/app/models/DashboardField.ts
-badd +17 src/app/api/private/inputs/dashboardField/DashboardFieldInput.ts
+badd +21 src/app/repositories/team/repository.test.ts
+badd +20 src/utils/test/factories/tag.ts
+badd +30 src/app/repositories/tag/repository.test.ts
+badd +35 src/app/models/Team.ts
+badd +183 package-scripts.js
+badd +43 src/app/api/private/useCases/user/admin/user/update.ts
+badd +116 ~/dev/castor/backend/src/app/models/User.ts
+badd +7 ~/dev/castor/backend/src/app/models/TeamUser.ts
+badd +43 ~/dev/castor/backend/src/app/models/SourceUser.ts
+badd +135 ~/dev/castor/backend/src/app/models/Account.ts
+badd +120 src/app/models/Source.ts
+badd +26 ~/dev/castor/backend/src/app/repositories/team/repository.ts
+badd +3 ~/dev/castor/backend/src/app/repositories/team/types.ts
+badd +35 database/seed.sh
+badd +32 src/migrations/1680539506364-team.ts
+badd +20 src/app/repositories/sourceUser/repository.ts
+badd +18 src/app/models/UnifiedUser.ts
+badd +11 src/app/api/private/resolvers/team/resolver.ts
+badd +47 ~/dev/castor/backend/src/app/repositories/dashboard/repository.ts
+badd +31 src/app/repositories/unifiedUser/scope.sql
+badd +35 ~/dev/castor/backend/src/app/repositories/unifiedUser/source.sql
+badd +4 src/app/repositories/unifiedUser/utils.ts
+badd +53 ~/dev/castor/backend/src/app/repositories/unifiedUser/repository.ts
+badd +6 src/scripts/materialized/unifiedUser/script.ts
+badd +6 ~/dev/castor/backend/src/scripts/materialized/unifiedUser/job.ts
+badd +114 ~/dev/castor/backend/src/app/repositories/AbstractRepository.ts
 argglobal
 %argdel
-$argadd ~/dev/castor/backend
-edit src/app/api/private/outputs/dashboardFields/DashboardFieldGroup.ts
+$argadd ~/dev/castor/backend/
+edit ~/dev/castor/backend/src/app/repositories/unifiedUser/source.sql
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
 wincmd _ | wincmd |
 vsplit
 1wincmd h
@@ -45,53 +59,32 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 43 + 44) / 89)
-exe '2resize ' . ((&lines * 43 + 44) / 89)
+exe 'vert 1resize ' . ((&columns * 208 + 208) / 416)
 exe 'vert 2resize ' . ((&columns * 207 + 208) / 416)
-exe '3resize ' . ((&lines * 43 + 44) / 89)
-exe 'vert 3resize ' . ((&columns * 208 + 208) / 416)
 argglobal
-balt src/app/models/DashboardField.ts
-let s:l = 14 - ((13 * winheight(0) + 21) / 43)
+balt src/app/repositories/unifiedUser/scope.sql
+let s:l = 35 - ((34 * winheight(0) + 43) / 87)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 14
-normal! 067|
+keepjumps 35
+normal! 05|
 wincmd w
 argglobal
-if bufexists(fnamemodify("src/app/models/DashboardField.ts", ":p")) | buffer src/app/models/DashboardField.ts | else | edit src/app/models/DashboardField.ts | endif
+if bufexists(fnamemodify("~/dev/castor/backend/src/app/repositories/unifiedUser/repository.ts", ":p")) | buffer ~/dev/castor/backend/src/app/repositories/unifiedUser/repository.ts | else | edit ~/dev/castor/backend/src/app/repositories/unifiedUser/repository.ts | endif
 if &buftype ==# 'terminal'
-  silent file src/app/models/DashboardField.ts
+  silent file ~/dev/castor/backend/src/app/repositories/unifiedUser/repository.ts
 endif
-balt src/app/api/private/inputs/dashboardField/DashboardFieldInput.ts
-let s:l = 59 - ((22 * winheight(0) + 21) / 43)
+balt ~/dev/castor/backend/src/app/repositories/AbstractRepository.ts
+let s:l = 53 - ((37 * winheight(0) + 43) / 87)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 59
-normal! 053|
+keepjumps 53
+normal! 020|
 wincmd w
-argglobal
-if bufexists(fnamemodify("src/app/api/private/inputs/dashboardField/DashboardFieldInput.ts", ":p")) | buffer src/app/api/private/inputs/dashboardField/DashboardFieldInput.ts | else | edit src/app/api/private/inputs/dashboardField/DashboardFieldInput.ts | endif
-if &buftype ==# 'terminal'
-  silent file src/app/api/private/inputs/dashboardField/DashboardFieldInput.ts
-endif
-balt src/app/models/DashboardField.ts
-let s:l = 17 - ((16 * winheight(0) + 21) / 43)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 17
-normal! 03|
-wincmd w
-3wincmd w
-exe '1resize ' . ((&lines * 43 + 44) / 89)
-exe '2resize ' . ((&lines * 43 + 44) / 89)
+exe 'vert 1resize ' . ((&columns * 208 + 208) / 416)
 exe 'vert 2resize ' . ((&columns * 207 + 208) / 416)
-exe '3resize ' . ((&lines * 43 + 44) / 89)
-exe 'vert 3resize ' . ((&columns * 208 + 208) / 416)
-if exists(':tcd') == 2 | tcd ~/dev/castor/backend | endif
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

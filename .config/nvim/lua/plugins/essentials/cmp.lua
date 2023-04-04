@@ -3,6 +3,15 @@ local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
+
+local function get_lsp_completion_context(completion, source)
+  local ok, source_name = pcall(function() return source.source.client.config.name end)
+  if not ok then return nil end
+  if source_name == "tsserver" then
+    return completion.detail
+  end
+end
+
 return {
   {
     "hrsh7th/nvim-cmp",
@@ -32,6 +41,7 @@ return {
         path = "PATH",
         snippy = "SNIPPET",
         emoji = "EMOJI",
+        codeium = "",
       }
 
       return {
@@ -106,13 +116,19 @@ return {
           -- },
         },
         formatting = {
-          fields = { "menu", "abbr", "kind" },
+          fields = { "abbr", "kind", "menu" },
           format = function(entry, item)
             local icons = require("config.icons").kinds
             if icons[item.kind] then
               item.kind = icons[item.kind] .. item.kind
             end
             item.menu = format_menu[entry.source.name]
+
+            local completion_context = get_lsp_completion_context(entry.completion_item, entry.source)
+            if completion_context ~= nil and completion_context ~= "" then
+              item.menu = item.menu .. " -> " .. completion_context
+            end
+
             return item
           end,
         },

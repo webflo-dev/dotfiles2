@@ -1,8 +1,8 @@
-local wk = require("which-key")
 local utils = require("config.utils")
 local keymaps = require("config.commands").get_commands()
+local wk = require("which-key")
 
-local map = utils.map
+local map = vim.keymap.set
 
 
 -- Some useful commands
@@ -102,6 +102,9 @@ map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
 
 
 
+
+
+
 -- buffers
 wk.register({ ["<leader>b"] = { name = "Buffers" } })
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
@@ -165,7 +168,47 @@ map("n", "<leader>gS", utils.functionOrCommand(keymaps.git.stash), { desc = "Git
 map("n", "<leader>gC", utils.functionOrCommand(keymaps.git.branch_commits), { desc = "Git branch commits" })
 
 
+-- Session
+wk.register({ ["<leader>p"] = { name = "Sessions" } })
+map("n", "<leader>pl", "<cmd>Session list<cr>", { desc = "show sessions" })
+map("n", "<leader>pn", "<cmd>Session new<cr>", { desc = "create new session" })
+map("n", "<leader>pu", "<cmd>Session update<cr>", { desc = "update session" })
 
+
+-- Trouble
+wk.register({ ["<leader>x"] = { name = "Trouble" } })
+map("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { desc = "toggle" })
+map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "workspace_diagnostics" })
+map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { desc = "document_diagnostics" })
+map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { desc = "loclist" })
+map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { desc = "quickfix" })
+map("n", "<leader>xr", "<cmd>TroubleToggle lsp_references<cr>", { desc = "LSP references" })
+map("n", "<leader>xT", "<cmd>TroubleToggle lsp_type_definitions<cr>", { desc = "LSP type definitions" })
+map("n", "<leader>xD", "<cmd>TroubleToggle lsp_definitions<cr>", { desc = "LSP definitions" })
+map("n", "<leader>xi", "<cmd>TroubleToggle lsp_implementations<cr>", { desc = "LSP implementations" })
+
+
+-- harpoon
+wk.register({ ["<leader>h"] = { name = "harpoooooon" } })
+map("n", "<leader>ha", function() require("harpoon.mark").add_file() end, { desc = "Add file (harpoon)" })
+map("n", "<leader>ht", function() require("harpoon.ui").toggle_quick_menu() end, { desc = "Toggle menu (harpoon)" })
+map("n", "<leader>hT", "<cmd>Telescope harpoon marks<cr>", { desc = "Toggle menu with preview (harpoon)" })
+map("n", "<tab>", function() require("harpoon.ui").nav_next() end, { desc = "Navigates to next mark " })
+map("n", "<S-tab>", function() require("harpoon.ui").nav_prev() end, { desc = "Navigates to previous mark" })
+map("n", "<leader>1", function() require("harpoon.ui").nav_file(1) end, { desc = "Go to mark 1 (harpoon)" })
+map("n", "<leader>2", function() require("harpoon.ui").nav_file(2) end, { desc = "Go to mark 2 (harpoon)" })
+map("n", "<leader>3", function() require("harpoon.ui").nav_file(3) end, { desc = "Go to mark 3 (harpoon)" })
+map("n", "<leader>4", function() require("harpoon.ui").nav_file(4) end, { desc = "Go to mark 4 (harpoon)" })
+
+-- Neotree
+map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
+
+-- Spectre
+map("n", "<leader>sr", function() require("spectre").open() end, { desc = "Replace in files (Spectre)" })
+
+
+-- Legendary
+map("n", "<C-S-p>", "<cmd>Legendary<cr>", { desc = "Open Legendary" })
 
 
 -- highlights under cursor

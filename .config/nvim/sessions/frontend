@@ -13,86 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +15 src/components/system/Tag/_.tsx
-badd +27 src/components/rich/LineageGraph/node/state.ts
-badd +1 ~/dev/castor/frontend
-badd +13 src/components/rich/pages/LineagePage/LineageFieldSelector/queries.gql
-badd +22 src/components/rich/pages/LineagePage/LineageFieldSelector/queries2.ts
-badd +6 codegen.ts
-badd +6 src/components/rich/pages/LineagePage/LineageFieldSelector/_.tsx
-badd +39 src/components/rich/pages/LineagePage/LineageFieldSelector/queries.ts
-badd +45 src/components/rich/pages/LineagePage/LineageFieldSelector/useFieldDropdown.ts
+badd +1 .
 argglobal
 %argdel
-$argadd ~/dev/castor/frontend
-edit src/components/rich/pages/LineagePage/LineageFieldSelector/queries2.ts
-let s:save_splitbelow = &splitbelow
-let s:save_splitright = &splitright
-set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
-wincmd w
-let &splitbelow = s:save_splitbelow
-let &splitright = s:save_splitright
-wincmd t
-let s:save_winminheight = &winminheight
-let s:save_winminwidth = &winminwidth
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-exe '1resize ' . ((&lines * 43 + 44) / 89)
-exe 'vert 1resize ' . ((&columns * 208 + 208) / 416)
-exe '2resize ' . ((&lines * 43 + 44) / 89)
-exe 'vert 2resize ' . ((&columns * 208 + 208) / 416)
-exe 'vert 3resize ' . ((&columns * 207 + 208) / 416)
+$argadd .
+edit .
 argglobal
-balt src/components/rich/pages/LineagePage/LineageFieldSelector/queries.gql
-let s:l = 28 - ((27 * winheight(0) + 21) / 43)
+let s:l = 1 - ((0 * winheight(0) + 43) / 87)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 28
-normal! 03|
-wincmd w
-argglobal
-if bufexists(fnamemodify("src/components/rich/pages/LineagePage/LineageFieldSelector/queries.gql", ":p")) | buffer src/components/rich/pages/LineagePage/LineageFieldSelector/queries.gql | else | edit src/components/rich/pages/LineagePage/LineageFieldSelector/queries.gql | endif
-if &buftype ==# 'terminal'
-  silent file src/components/rich/pages/LineagePage/LineageFieldSelector/queries.gql
-endif
-balt src/components/rich/pages/LineagePage/LineageFieldSelector/queries2.ts
-let s:l = 31 - ((30 * winheight(0) + 21) / 43)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 31
+keepjumps 1
 normal! 0
-wincmd w
-argglobal
-if bufexists(fnamemodify("src/components/rich/pages/LineagePage/LineageFieldSelector/useFieldDropdown.ts", ":p")) | buffer src/components/rich/pages/LineagePage/LineageFieldSelector/useFieldDropdown.ts | else | edit src/components/rich/pages/LineagePage/LineageFieldSelector/useFieldDropdown.ts | endif
-if &buftype ==# 'terminal'
-  silent file src/components/rich/pages/LineagePage/LineageFieldSelector/useFieldDropdown.ts
-endif
-balt src/components/rich/pages/LineagePage/LineageFieldSelector/queries.ts
-let s:l = 45 - ((44 * winheight(0) + 43) / 87)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 45
-normal! 038|
-wincmd w
-3wincmd w
-exe '1resize ' . ((&lines * 43 + 44) / 89)
-exe 'vert 1resize ' . ((&columns * 208 + 208) / 416)
-exe '2resize ' . ((&lines * 43 + 44) / 89)
-exe 'vert 2resize ' . ((&columns * 208 + 208) / 416)
-exe 'vert 3resize ' . ((&columns * 207 + 208) / 416)
-if exists(':tcd') == 2 | tcd ~/dev/castor/frontend | endif
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -100,8 +32,6 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
-let &winminheight = s:save_winminheight
-let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)

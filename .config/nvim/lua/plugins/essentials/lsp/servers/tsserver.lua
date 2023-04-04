@@ -11,12 +11,18 @@ function M.on_attach(client, buffer)
 end
 
 M.settings = {
+  codeActions = {
+        ["source.removeUnused"] = true,
+        ["source.removeUnusedImports"] = true,
+        ["source.addMissingImports"] = true,
+  },
   typescript = {
     inlayHints = {
       includeInlayParameterNameHints = 'all',
       includeInlayParameterNameHintsWhenArgumentMatchesName = false,
       includeInlayFunctionParameterTypeHints = true,
       includeInlayVariableTypeHints = true,
+      includeInlayVariableTypeHintsWhenTypeMatchesName = true,
       includeInlayPropertyDeclarationTypeHints = true,
       includeInlayFunctionLikeReturnTypeHints = true,
       includeInlayEnumMemberValueHints = true,
@@ -28,6 +34,7 @@ M.settings = {
       includeInlayParameterNameHintsWhenArgumentMatchesName = false,
       includeInlayFunctionParameterTypeHints = true,
       includeInlayVariableTypeHints = true,
+      includeInlayVariableTypeHintsWhenTypeMatchesName = true,
       includeInlayPropertyDeclarationTypeHints = true,
       includeInlayFunctionLikeReturnTypeHints = true,
       includeInlayEnumMemberValueHints = true,

@@ -24,11 +24,13 @@ vim.opt.encoding = "utf-8"                                    --- The encoding d
 vim.opt.errorbells = false                                    --- Disables sound effect for errors
 vim.opt.expandtab = true                                      -- Use spaces instead of tabs
 -- vim.opt.fileencoding = "utf-8" --- The encoding written to file
+vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+-- vim.opt.foldcolumn = '1'
 vim.opt.foldcolumn = "0"
-vim.opt.foldlevel = 99             --- Using ufo provider need a large value
-vim.opt.foldlevelstart = 99        --- Expand all folds by default
+vim.opt.foldlevel = 99      --- Using ufo provider need a large value
+vim.opt.foldlevelstart = 99 --- Expand all folds by default
 vim.opt.foldnestmax = 0
-vim.opt.formatoptions = "jcroqlnt" -- "jcroqlnt" -- default is tcqj
+vim.opt.formatoptions = "jcqlnt"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.hidden = true          -- Enable modified buffers in background
@@ -65,8 +67,10 @@ vim.opt.smarttab = true       --- Makes tabbing smarter will realize you have 2 
 vim.opt.softtabstop = 2       --- Insert 2 spaces for a tab
 vim.opt.spell = false
 vim.opt.spelllang = { "en" }
-vim.opt.splitbelow = true                              -- Put new windows below current
-vim.opt.splitright = true                              --- Put new windows right of current
+vim.opt.splitbelow = true -- Put new windows below current
+vim.opt.splitright = true --- Put new windows right of current
+-- vim.o.statuscolumn =
+-- '%=%l%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? " " : " ") : "  " }%*'
 -- vim.opt.statuscolumn = "%=%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum < 10 ? v:lnum . '  ' : v:lnum) : ''}%=%s"
 vim.opt.swapfile = false                               --- Swap not needed
 vim.opt.tabstop = 2                                    --- Insert 2 spaces for a tab
@@ -101,6 +105,9 @@ vim.opt.writebackup = false   --- Not needed
 
 vim.opt.backupdir:remove(".") --- keep backups out of the current directory
 vim.opt.shortmess:append("WI")
+vim.opt.formatoptions:remove("r")
+vim.opt.formatoptions:remove("o")
+
 
 if vim.fn.has("nvim-0.9.0") == 1 then
   vim.opt.splitkeep = "screen"
