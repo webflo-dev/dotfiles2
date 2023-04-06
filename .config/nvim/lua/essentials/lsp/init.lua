@@ -1,4 +1,4 @@
-local utils = require("config.utils")
+local utils = require("utils")
 
 return {
   {
@@ -86,7 +86,7 @@ return {
           local buffer = args.buf
           local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-          local lsp_utils = require("plugins.essentials.lsp.utils")
+          local lsp_utils = require("essentials.lsp.utils")
           lsp_utils.attach_format(client, buffer)
           lsp_utils.attach_keymaps(client, buffer)
           -- lsp_utils.attach_popup_diagnostics(client, buffer)
@@ -96,7 +96,7 @@ return {
       })
 
       -- diagnostics
-      for name, icon in pairs(require("config.icons").diagnostics) do
+      for name, icon in pairs(require("icons").diagnostics) do
         name = "DiagnosticSign" .. name
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
       end

@@ -14,8 +14,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.lang.json" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- import/override with your plugins
-    -- { "webflo/webflo.nvim", dev = true, import = "" },
-    { import = "plugins/essentials" },
+    { import = "essentials" },
     { import = "plugins" },
   },
   defaults = {
@@ -38,8 +37,10 @@ require("lazy").setup({
     border = "rounded",
   },
   checker = {
-    enabled = true
-  }, -- automatically check for plugin updates
+    enabled = true,
+    notify = false,   -- get a notification when new updates are found
+    frequency = 3600, -- check for updates every hour
+  },
   change_detection = {
     enabled = false,
   },

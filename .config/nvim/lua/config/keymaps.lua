@@ -1,5 +1,5 @@
-local utils = require("config.utils")
-local keymaps = require("config.commands").get_commands()
+local utils = require("utils")
+local keymaps = require("commands").get_commands()
 local wk = require("which-key")
 
 local map = vim.keymap.set
@@ -209,6 +209,13 @@ map("n", "<leader>sr", function() require("spectre").open() end, { desc = "Repla
 
 -- Legendary
 map("n", "<C-S-p>", "<cmd>Legendary<cr>", { desc = "Open Legendary" })
+
+
+-- Codeium
+map('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+map('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+map('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+map('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
 
 
 -- highlights under cursor

@@ -1,4 +1,4 @@
-local icons = require("config.icons")
+local icons = require("icons")
 
 local function starts_with(str, start)
   return str:sub(1, #start) == start

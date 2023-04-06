@@ -1,7 +1,18 @@
-require("config")
+require("_lazy")
 
--- vim.cmd.colorscheme("minimal-base16")
--- vim.cmd.colorscheme("minimal")
 
--- vim.cmd.colorscheme("tokyonight-night")
+-- order matter! Cannot automatically require these files
+require("config.options")
+require("config.autocmds")
+require("config.filetypes")
+require("config.keymaps")
+require("config.user_commands")
+
+-- local config_path = vim.fn.stdpath("config")
+-- for _, file in ipairs(vim.fn.readdir(config_path .. "/lua/config", [[v:val =~ '\.lua$']])) do
+--   require("config." .. file:gsub("%.lua$", ""))
+-- end
+
+
+
 vim.cmd.colorscheme("tokyonight")

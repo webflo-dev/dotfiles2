@@ -1,4 +1,4 @@
-local utils = require("config.utils")
+local utils = require("utils")
 
 local os_sep = package.config:sub(1, 1)
 
@@ -28,7 +28,7 @@ return {
       local heirline = require("heirline.utils")
       local conditions = require('heirline.conditions')
       local devicons = require("nvim-web-devicons")
-      local icons = require("config.icons")
+      local icons = require("icons")
       local colors = require("tokyonight.colors").setup()
 
       local Align, Space, Null, ReadOnly

@@ -13,7 +13,7 @@ return {
       vim.g.neo_tree_remove_legacy_commands = 1
     end,
     opts = function()
-      local icons = require("config.icons")
+      local icons = require("icons")
       return {
         enable_diagnostics = true,
         default_component_configs = {
@@ -33,6 +33,9 @@ return {
               conflict = icons.git.conflict,
             },
           },
+        },
+        sources = {
+          "filesystem",
         },
         filesystem = {
           follow_current_file = true,

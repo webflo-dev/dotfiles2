@@ -22,8 +22,9 @@ return {
         nargs = 0
       })
     end,
-    config = function(_, opts)
-      require("pets").setup(opts)
-    end
+    config = true
+    -- config = function(_, opts)
+    --   require("pets").setup(opts)
+    -- end
   }
 }

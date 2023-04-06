@@ -44,6 +44,12 @@ return {
         codeium = "",
       }
 
+
+      local border_opts = {
+        border = "single",
+        winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      }
+
       return {
         completion = {
           completeopt = "menu,menuone,noinsert",
@@ -54,19 +60,19 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert({
-              ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-              ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-              ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-              ["<C-f>"] = cmp.mapping.scroll_docs(4),
-              ["<C-Space>"] = cmp.mapping.complete(),
-              ["<C-e>"] = cmp.mapping.abort(),
-              ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-              ["<C-u>"] = cmp.mapping.scroll_docs(4),
-              ["<CR>"] = cmp.mapping.confirm({
+          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-u>"] = cmp.mapping.scroll_docs(4),
+          ["<CR>"] = cmp.mapping.confirm({
             select = false,
             behavior = cmp.ConfirmBehavior.Replace,
           }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-              ["<Tab>"] = cmp.mapping(function(fallback)
+          ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
             elseif has_words_before() then
@@ -75,7 +81,7 @@ return {
               fallback()
             end
           end, { "i", "s" }),
-              ["<S-Tab>"] = cmp.mapping(function(fallback)
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
             else
@@ -118,7 +124,7 @@ return {
         formatting = {
           fields = { "abbr", "kind", "menu" },
           format = function(entry, item)
-            local icons = require("config.icons").kinds
+            local icons = require("icons").kinds
             if icons[item.kind] then
               item.kind = icons[item.kind] .. item.kind
             end
@@ -133,15 +139,13 @@ return {
           end,
         },
         window = {
-          completion = {
-            border = "rounded",
-            -- col_offset = -3,
-            -- side_padding = 0,
-          },
-          documentation = {
-            border = "rounded",
-          },
+          completion = cmp.config.window.bordered(border_opts),
+          documentation = cmp.config.window.bordered(border_opts),
         },
+        -- window = {
+        --   completion = { border = "rounded", },
+        --   documentation = { border = "rounded", },
+        -- },
         experimental = {
           ghost_text = {
             hl_group = "LspCodeLens",

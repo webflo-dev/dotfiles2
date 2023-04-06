@@ -22,8 +22,8 @@ end
 
 
 local function get_lsp_keymaps(buffer)
-  local keymaps = require("config.commands").get_commands()
-  local functionOrCommand = require("config.utils").functionOrCommand
+  local keymaps = require("commands").get_commands()
+  local functionOrCommand = require("utils").functionOrCommand
   local wk = require("which-key")
 
   local function keybind(keys, category)

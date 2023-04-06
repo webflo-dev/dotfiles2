@@ -14,7 +14,7 @@ return {
             border = "rounded"
           },
           icons = {
-            mappings = require("config.icons").kinds
+            mappings = require("icons").kinds
           }
         },
         keymap = {

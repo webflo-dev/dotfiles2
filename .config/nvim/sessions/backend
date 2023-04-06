@@ -13,78 +13,22 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +21 src/app/repositories/team/repository.test.ts
-badd +20 src/utils/test/factories/tag.ts
-badd +30 src/app/repositories/tag/repository.test.ts
-badd +35 src/app/models/Team.ts
-badd +183 package-scripts.js
-badd +43 src/app/api/private/useCases/user/admin/user/update.ts
-badd +116 ~/dev/castor/backend/src/app/models/User.ts
-badd +7 ~/dev/castor/backend/src/app/models/TeamUser.ts
-badd +43 ~/dev/castor/backend/src/app/models/SourceUser.ts
-badd +135 ~/dev/castor/backend/src/app/models/Account.ts
-badd +120 src/app/models/Source.ts
-badd +26 ~/dev/castor/backend/src/app/repositories/team/repository.ts
-badd +3 ~/dev/castor/backend/src/app/repositories/team/types.ts
-badd +35 database/seed.sh
-badd +32 src/migrations/1680539506364-team.ts
-badd +20 src/app/repositories/sourceUser/repository.ts
-badd +18 src/app/models/UnifiedUser.ts
-badd +11 src/app/api/private/resolvers/team/resolver.ts
-badd +47 ~/dev/castor/backend/src/app/repositories/dashboard/repository.ts
-badd +31 src/app/repositories/unifiedUser/scope.sql
-badd +35 ~/dev/castor/backend/src/app/repositories/unifiedUser/source.sql
-badd +4 src/app/repositories/unifiedUser/utils.ts
-badd +53 ~/dev/castor/backend/src/app/repositories/unifiedUser/repository.ts
-badd +6 src/scripts/materialized/unifiedUser/script.ts
-badd +6 ~/dev/castor/backend/src/scripts/materialized/unifiedUser/job.ts
-badd +114 ~/dev/castor/backend/src/app/repositories/AbstractRepository.ts
+badd +3 ~/dev/castor/backend/src/migrations/1680628124463-teams.ts
+badd +64 ~/dev/castor/backend/src/app/models/Team.ts
+badd +27 ~/dev/castor/backend/src/migrations/1680775840231---.ts
+badd +19 gitsigns:///home/florent/dev/castor/backend/.git/:0:src/migrations/1680628124463-teams.ts
+badd +1 ~/dev/castor/backend/
 argglobal
 %argdel
 $argadd ~/dev/castor/backend/
-edit ~/dev/castor/backend/src/app/repositories/unifiedUser/source.sql
-let s:save_splitbelow = &splitbelow
-let s:save_splitright = &splitright
-set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
-let &splitbelow = s:save_splitbelow
-let &splitright = s:save_splitright
-wincmd t
-let s:save_winminheight = &winminheight
-let s:save_winminwidth = &winminwidth
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-exe 'vert 1resize ' . ((&columns * 208 + 208) / 416)
-exe 'vert 2resize ' . ((&columns * 207 + 208) / 416)
+edit ~/dev/castor/backend/src/migrations/1680628124463-teams.ts
 argglobal
-balt src/app/repositories/unifiedUser/scope.sql
-let s:l = 35 - ((34 * winheight(0) + 43) / 87)
+let s:l = 3 - ((2 * winheight(0) + 43) / 87)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 35
-normal! 05|
-wincmd w
-argglobal
-if bufexists(fnamemodify("~/dev/castor/backend/src/app/repositories/unifiedUser/repository.ts", ":p")) | buffer ~/dev/castor/backend/src/app/repositories/unifiedUser/repository.ts | else | edit ~/dev/castor/backend/src/app/repositories/unifiedUser/repository.ts | endif
-if &buftype ==# 'terminal'
-  silent file ~/dev/castor/backend/src/app/repositories/unifiedUser/repository.ts
-endif
-balt ~/dev/castor/backend/src/app/repositories/AbstractRepository.ts
-let s:l = 53 - ((37 * winheight(0) + 43) / 87)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 53
-normal! 020|
-wincmd w
-exe 'vert 1resize ' . ((&columns * 208 + 208) / 416)
-exe 'vert 2resize ' . ((&columns * 207 + 208) / 416)
+keepjumps 3
+normal! 050|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -92,8 +36,6 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
-let &winminheight = s:save_winminheight
-let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
