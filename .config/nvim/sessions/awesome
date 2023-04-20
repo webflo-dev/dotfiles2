@@ -13,21 +13,24 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +5 ~/.config/awesome/rc.lua
-badd +9 ~/.config/awesome/themes/summer/init.lua
-badd +40 ~/.config/awesome/themes/summer/bar.lua
+badd +1 themes/spring/theme.lua
+badd +10 rc.lua
+badd +19 autostart.sh
+badd +0 ~/.config/awesome
+badd +23 picom.conf
 argglobal
 %argdel
-$argadd ./
-edit ~/.config/awesome/themes/summer/init.lua
+$argadd ~/.config/awesome
+edit autostart.sh
 argglobal
-balt ~/.config/awesome/rc.lua
-let s:l = 9 - ((8 * winheight(0) + 43) / 87)
+balt picom.conf
+let s:l = 19 - ((18 * winheight(0) + 45) / 90)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 9
+keepjumps 19
 normal! 0
+if exists(':tcd') == 2 | tcd ~/.config/awesome | endif
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

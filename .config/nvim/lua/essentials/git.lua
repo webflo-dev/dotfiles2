@@ -69,5 +69,12 @@ return {
       "DiffviewOpen",
       "DiffviewFileHistory",
     },
+    opts = {
+      view = {
+        merge_tool = {
+          layout = "diff3_mixed",
+        },
+      }
+    }
   }
 }

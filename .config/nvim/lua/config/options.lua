@@ -25,7 +25,15 @@ vim.opt.errorbells = false                                    --- Disables sound
 vim.opt.expandtab = true                                      -- Use spaces instead of tabs
 -- vim.opt.fileencoding = "utf-8" --- The encoding written to file
 vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
--- vim.opt.foldcolumn = '1'
+-- vim.opt.fillchars = {
+--   horiz = '━',
+--   horizup = '┻',
+--   horizdown = '┳',
+--   vert = '┃',
+--   vertleft = '┫',
+--   vertright = '┣',
+--   verthoriz = '╋',
+-- }
 vim.opt.foldcolumn = "0"
 vim.opt.foldlevel = 99      --- Using ufo provider need a large value
 vim.opt.foldlevelstart = 99 --- Expand all folds by default
@@ -108,8 +116,8 @@ vim.opt.shortmess:append("WI")
 
 
 if vim.fn.has("nvim-0.9.0") == 1 then
-  vim.opt.splitkeep = "screen"
-  vim.opt.shortmess:append({ C = true })
+        vim.opt.splitkeep = "screen"
+        vim.opt.shortmess:append({ C = true })
 end
 
 -- Fix markdown indentation settings

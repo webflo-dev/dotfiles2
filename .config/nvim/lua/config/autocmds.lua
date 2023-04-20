@@ -54,3 +54,30 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })
+
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = vim.api.nvim_create_augroup("terminal_local_options", { clear = true }),
+  pattern = "term://*",
+  callback = function()
+    vim.cmd([[
+      setlocal nonu
+      setlocal nornu
+      setlocal nolist
+      setlocal signcolumn=no
+      setlocal foldcolumn=0
+      setlocal statuscolumn=
+      setlocal nocursorline
+      setlocal scrolloff=0
+      startinsert
+    ]])
+  end
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("filetype_plugin", { clear = true }),
+  pattern = { "json", "jsonc" },
+  callback = function()
+    vim.wo.conceallevel = 0
+  end
+})

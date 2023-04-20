@@ -10,7 +10,7 @@ return {
   file_manager = "thunar",
   web_browser = "microsoft-edge-stable",
   music_player = "spotify",
-  theme = "summer",
+  theme = "spring",
   cmd = {
     terminal = local_bin .. "terminal",
     terminal_float = local_bin .. "terminal --float",

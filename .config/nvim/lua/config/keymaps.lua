@@ -103,8 +103,6 @@ map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
 
 
 
-
-
 -- buffers
 wk.register({ ["<leader>b"] = { name = "Buffers" } })
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
@@ -127,7 +125,7 @@ map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
 -- Resize window using <ctrl> arrow keys
 map("n", "<C-S-h>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-map("n", "<C-S-h>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+map("n", "<C-S-l>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 map("n", "<C-S-j>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 map("n", "<C-S-k>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
@@ -149,15 +147,14 @@ map("n", "<leader>,", utils.functionOrCommand(keymaps.lists.buffers), { desc = "
 wk.register({ ["<leader>f"] = { name = "Files" } })
 map("n", "<leader>ff", utils.functionOrCommand(keymaps.lists.files), { desc = "Find files" })
 map("n", "<leader>fr", utils.functionOrCommand(keymaps.lists.oldfiles), { desc = "Recent files" })
+map("n", "<leader>fw", utils.functionOrCommand(keymaps.search.search_word), { desc = "Search word under cursor" })
 
--- search
-wk.register({ ["<leader>s"] = { name = "Search" } })
-map("n", "<leader>sw", utils.functionOrCommand(keymaps.search.search_word), { desc = "Search word under cursor" })
 
 
 -- colorschemes
 wk.register({ ["<leader>u"] = { name = "UI" } })
 map("n", "<leader>ut", utils.functionOrCommand(keymaps.search.colorschemes), { desc = "Colorschemes with preview" })
+map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 
 -- git
 wk.register({ ["<leader>g"] = { name = "Git" } })
@@ -169,10 +166,10 @@ map("n", "<leader>gC", utils.functionOrCommand(keymaps.git.branch_commits), { de
 
 
 -- Session
-wk.register({ ["<leader>p"] = { name = "Sessions" } })
-map("n", "<leader>pl", "<cmd>Session list<cr>", { desc = "show sessions" })
-map("n", "<leader>pn", "<cmd>Session new<cr>", { desc = "create new session" })
-map("n", "<leader>pu", "<cmd>Session update<cr>", { desc = "update session" })
+wk.register({ ["<leader>s"] = { name = "Sessions" } })
+map("n", "<leader>sl", "<cmd>Session list<cr>", { desc = "show sessions" })
+map("n", "<leader>sn", "<cmd>Session new<cr>", { desc = "create new session" })
+map("n", "<leader>su", "<cmd>Session update<cr>", { desc = "update session" })
 
 
 -- Trouble
@@ -193,8 +190,8 @@ wk.register({ ["<leader>h"] = { name = "harpoooooon" } })
 map("n", "<leader>ha", function() require("harpoon.mark").add_file() end, { desc = "Add file (harpoon)" })
 map("n", "<leader>ht", function() require("harpoon.ui").toggle_quick_menu() end, { desc = "Toggle menu (harpoon)" })
 map("n", "<leader>hT", "<cmd>Telescope harpoon marks<cr>", { desc = "Toggle menu with preview (harpoon)" })
-map("n", "<tab>", function() require("harpoon.ui").nav_next() end, { desc = "Navigates to next mark " })
-map("n", "<S-tab>", function() require("harpoon.ui").nav_prev() end, { desc = "Navigates to previous mark" })
+-- map("n", "<tab>", function() require("harpoon.ui").nav_next() end, { desc = "Navigates to next mark " })
+-- map("n", "<S-tab>", function() require("harpoon.ui").nav_prev() end, { desc = "Navigates to previous mark" })
 map("n", "<leader>1", function() require("harpoon.ui").nav_file(1) end, { desc = "Go to mark 1 (harpoon)" })
 map("n", "<leader>2", function() require("harpoon.ui").nav_file(2) end, { desc = "Go to mark 2 (harpoon)" })
 map("n", "<leader>3", function() require("harpoon.ui").nav_file(3) end, { desc = "Go to mark 3 (harpoon)" })
@@ -204,7 +201,7 @@ map("n", "<leader>4", function() require("harpoon.ui").nav_file(4) end, { desc =
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
 
 -- Spectre
-map("n", "<leader>sr", function() require("spectre").open() end, { desc = "Replace in files (Spectre)" })
+map("n", "<leader>r", function() require("spectre").open() end, { desc = "Replace in files (Spectre)" })
 
 
 -- Legendary
@@ -212,13 +209,7 @@ map("n", "<C-S-p>", "<cmd>Legendary<cr>", { desc = "Open Legendary" })
 
 
 -- Codeium
-map('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+map('i', '<C-space>', function() return vim.fn['codeium#Accept']() end, { expr = true })
 map('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
 map('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
 map('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
-
-
--- highlights under cursor
-if vim.fn.has("nvim-0.9.0") == 1 then
-  map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
-end

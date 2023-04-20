@@ -118,13 +118,13 @@ return {
 
 
       local handlers = {
-            ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-            ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
-            ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }),
+        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+        ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }),
       }
 
       local function setup(server)
-        local custom_config_exists, custom_config = pcall(require, "plugins.essentials.lsp.servers." .. server)
+        local custom_config_exists, custom_config = pcall(require, "essentials.lsp_servers." .. server)
         local server_opts = {
           capabilities = capabilities,
           handlers = handlers,

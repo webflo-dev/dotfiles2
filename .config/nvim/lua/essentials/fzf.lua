@@ -94,7 +94,7 @@ return {
         fzf_bin      = "sk",
         fzf_opts     = {
           -- ["--marker"] = "+",
-              ["--keep-right"] = "",
+          ["--keep-right"] = "",
         },
         winopts      = {
           width   = 0.8,
@@ -120,22 +120,23 @@ return {
           },
         },
         fzf_colors   = {
-              ["fg"] = { "fg", "TelescopeNormal" },
-              ["bg"] = { "bg", "TelescopeNormal" },
-              ["hl"] = { "fg", "TelescopeMatching" },
-              ["fg+"] = { "fg", "TelescopeSelection" },
-              ["bg+"] = { "bg", "TelescopeSelection" },
-              ["hl+"] = { "fg", "TelescopeMatching" },
-              ["info"] = { "fg", "TelescopeMultiSelection" },
-              ["border"] = { "fg", "TelescopeBorder" },
-              ["gutter"] = { "bg", "TelescopeNormal" },
-              ["prompt"] = { "fg", "TelescopePromptPrefix" },
-              ["pointer"] = { "fg", "TelescopeSelectionCaret" },
-              ["marker"] = { "fg", "TelescopeSelectionCaret" },
-              ["header"] = { "fg", "TelescopeTitle" },
+          ["fg"] = { "fg", "TelescopeNormal" },
+          ["bg"] = { "bg", "TelescopeNormal" },
+          ["hl"] = { "fg", "TelescopeMatching" },
+          ["fg+"] = { "fg", "TelescopeSelection" },
+          ["bg+"] = { "bg", "TelescopeSelection" },
+          ["hl+"] = { "fg", "TelescopeMatching" },
+          ["info"] = { "fg", "TelescopeMultiSelection" },
+          ["border"] = { "fg", "TelescopeBorder" },
+          ["gutter"] = { "bg", "TelescopeNormal" },
+          ["prompt"] = { "fg", "TelescopePromptPrefix" },
+          ["pointer"] = { "fg", "TelescopeSelectionCaret" },
+          ["marker"] = { "fg", "TelescopeSelectionCaret" },
+          ["header"] = { "fg", "TelescopeTitle" },
         },
         colorschemes = {
-          winopts = { height = 0.33, width = 0.33, },
+          -- winopts = { height = 0.33, width = 0.33, },
+          winopts = { height = 0.33, width = 0.20, },
         },
         lsp          = {
           symbols = {
@@ -144,47 +145,47 @@ return {
         },
         keymap       = {
           builtin = {
-                ["<F1>"] = "toggle-help",
-                ["<F2>"] = "toggle-fullscreen",
+            ["<F1>"] = "toggle-help",
+            ["<F2>"] = "toggle-fullscreen",
             -- Only valid with the 'builtin' previewer
-                ["<F3>"] = "toggle-preview-wrap",
-                ["<F4>"] = "toggle-preview",
-                ["<F5>"] = "toggle-preview-ccw",
-                ["<F6>"] = "toggle-preview-cw",
-                ["<C-d>"] = "preview-page-down",
-                ["<C-u>"] = "preview-page-up",
-                ["<S-left>"] = "preview-page-reset",
+            ["<F3>"] = "toggle-preview-wrap",
+            ["<F4>"] = "toggle-preview",
+            ["<F5>"] = "toggle-preview-ccw",
+            ["<F6>"] = "toggle-preview-cw",
+            ["<C-d>"] = "preview-page-down",
+            ["<C-u>"] = "preview-page-up",
+            ["<S-left>"] = "preview-page-reset",
           },
           fzf = {
-                ["ctrl-z"] = "abort",
-                ["ctrl-f"] = "half-page-down",
-                ["ctrl-b"] = "half-page-up",
-                ["ctrl-a"] = "beginning-of-line",
-                ["ctrl-e"] = "end-of-line",
-                ["alt-a"] = "toggle-all",
+            ["ctrl-z"] = "abort",
+            ["ctrl-f"] = "half-page-down",
+            ["ctrl-b"] = "half-page-up",
+            ["ctrl-a"] = "beginning-of-line",
+            ["ctrl-e"] = "end-of-line",
+            ["alt-a"] = "toggle-all",
             -- Only valid with fzf previewers (bat/cat/git/etc)
-                ["f3"] = "toggle-preview-wrap",
-                ["f4"] = "toggle-preview",
-                ["ctrl-d"] = "preview-page-down",
-                ["ctrl-u"] = "preview-page-up",
-                ["ctrl-q"] = "select-all+accept",
+            ["f3"] = "toggle-preview-wrap",
+            ["f4"] = "toggle-preview",
+            ["ctrl-d"] = "preview-page-down",
+            ["ctrl-u"] = "preview-page-up",
+            ["ctrl-q"] = "select-all+accept",
           },
         },
         actions      = {
           files = {
-                ["default"] = actions.file_edit_or_qf,
-                ["ctrl-s"] = actions.file_split,
-                ["ctrl-v"] = actions.file_vsplit,
-                ["ctrl-t"] = actions.file_tabedit,
-                ["alt-q"] = actions.file_sel_to_qf,
-                ["alt-l"] = actions.file_sel_to_ll,
+            ["default"] = actions.file_edit_or_qf,
+            ["ctrl-s"] = actions.file_split,
+            ["ctrl-v"] = actions.file_vsplit,
+            ["ctrl-t"] = actions.file_tabedit,
+            ["alt-q"] = actions.file_sel_to_qf,
+            ["alt-l"] = actions.file_sel_to_ll,
           },
           buffers = {
-                ["default"] = actions.buf_edit,
-                ["ctrl-d"] = actions.buf_split,
-                ["ctrl-s"] = actions.buf_split,
-                ["ctrl-v"] = actions.buf_vsplit,
-                ["ctrl-t"] = actions.buf_tabedit,
+            ["default"] = actions.buf_edit,
+            ["ctrl-d"] = actions.buf_split,
+            ["ctrl-s"] = actions.buf_split,
+            ["ctrl-v"] = actions.buf_vsplit,
+            ["ctrl-t"] = actions.buf_tabedit,
           },
         },
         files        = {
@@ -198,10 +199,10 @@ return {
           status = {
             no_header = true,
             fzf_opts = {
-                  ["--header"] = git_status_header()
+              ["--header"] = git_status_header()
             },
             actions = {
-                  ["ctrl-x"] = { git_discard, actions.resume },
+              ["ctrl-x"] = { git_discard, actions.resume },
             }
           },
           branches = {
@@ -209,11 +210,11 @@ return {
             cmd      = "git branch --all --color",
             preview  = "git log --graph --pretty=oneline --abbrev-commit --color {1}",
             fzf_opts = {
-                  ["--header"] = git_branches_header()
+              ["--header"] = git_branches_header()
             },
             actions  = {
-                  ["ctrl-r"] = { git_fetch, actions.resume },
-                  ["ctrl-x"] = { git_branch_delete_merged, actions.resume },
+              ["ctrl-r"] = { git_fetch, actions.resume },
+              ["ctrl-x"] = { git_branch_delete_merged, actions.resume },
             },
           }
         },

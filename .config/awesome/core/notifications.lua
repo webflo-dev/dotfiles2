@@ -9,13 +9,9 @@ ruled.notification.connect_signal('request::rules', function()
     properties = {
       screen           = awful.screen.preferred,
       implicit_timeout = 5,
-      position         = "top_left",
+      position         = "top_middle",
     }
   }
-end)
-
-naughty.connect_signal("request::display", function(n)
-  naughty.layout.box { notification = n }
 end)
 
 

@@ -34,9 +34,9 @@ return {
             },
           },
         },
-        sources = {
-          "filesystem",
-        },
+        -- sources = {
+        --   "filesystem",
+        -- },
         filesystem = {
           follow_current_file = true,
           -- use_libuv_file_watcher = true,

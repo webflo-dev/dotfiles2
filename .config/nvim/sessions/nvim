@@ -13,37 +13,22 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +3 lua/plugins/neo-tree.lua
-badd +5 ~/.config/nvim/init.lua
-badd +8 ~/.config/nvim/lua/config/filetypes.lua
-badd +0 ~/.config/nvim/
-badd +27 ~/.config/nvim/lua/config/user_commands.lua
-badd +218 ~/.config/nvim/lua/config/keymaps.lua
-badd +108 ~/.config/nvim/lua/config/options.lua
-badd +16 ~/.config/nvim/lua/lazy.lua
-badd +1 ~/.config/nvim/lua/icons.lua
-badd +0 ~/.config/nvim/lua/utils.lua
-badd +1 ~/.config/nvim/lua/commands.lua
-badd +1 ~/.config/nvim/lua/config/nap.lua__
-badd +2 ~/.config/nvim/lua/plugins/codeium.lua
-badd +1 ~/.config/nvim/lua/plugins/harpoon.lua
-badd +2 ~/.config/nvim/lua/plugins/leap.lua
-badd +1 ~/.config/nvim/lua/plugins/surround.lua
-badd +25 ~/.config/nvim/lua/plugins/pets.lua
-badd +4 ~/.config/nvim/lua/plugins/sessions.lua
-badd +0 ~/.config/nvim/lua/plugins/heirline.lua
+badd +18 lua/_lazy.lua
+badd +1 ~/.config/nvim
+badd +105 lua/config/keymaps.lua
+badd +25 lua/plugins/leap.lua
 argglobal
 %argdel
-$argadd ~/.config/nvim/
-edit ~/.config/nvim/lua/lazy.lua
+$argadd ~/.config/nvim
+edit lua/plugins/leap.lua
 argglobal
-balt ~/.config/nvim/lua/plugins/sessions.lua
-let s:l = 16 - ((15 * winheight(0) + 43) / 87)
+balt lua/config/keymaps.lua
+let s:l = 19 - ((18 * winheight(0) + 45) / 90)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 16
-normal! 016|
+keepjumps 19
+normal! 05|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

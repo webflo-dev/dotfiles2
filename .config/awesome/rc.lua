@@ -7,8 +7,7 @@ require("themes." .. user_variables.theme)
 require("signals")
 
 -- Autorun at startup
--- awful.spawn.with_shell("bash ~/.local/bin/autostart")
-awful.spawn.with_shell("~/.config/awesome/autostart.sh")
+awful.spawn.with_shell(gears.filesystem.get_configuration_dir() .. "autostart.sh")
 
 
 -- Enable sloppy focus, so that focus follows mouse.
@@ -28,10 +27,10 @@ require("awful.autofocus")
 collectgarbage("setpause", 110)
 collectgarbage("setstepmul", 1000)
 gears.timer({
-    timeout = 5,
-    autostart = true,
-    call_now = true,
-    callback = function()
-        collectgarbage("collect")
-    end,
+  timeout = 5,
+  autostart = true,
+  call_now = true,
+  callback = function()
+    collectgarbage("collect")
+  end,
 })

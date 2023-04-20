@@ -13,6 +13,4 @@ require("config.user_commands")
 --   require("config." .. file:gsub("%.lua$", ""))
 -- end
 
-
-
 vim.cmd.colorscheme("tokyonight")

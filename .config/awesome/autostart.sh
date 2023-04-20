@@ -18,4 +18,7 @@ xss-lock --transfer-sleep-lock -- betterlockscreen -l dimblur &
 # picom --experimental-backends -b &
 picom -b &
 playerctld daemon
-companion & disown
+nm-applet &
+blueman-applet & 
+companion &
+# companion & disown

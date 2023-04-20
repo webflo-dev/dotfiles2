@@ -88,23 +88,28 @@ theme.titlebar_maximized_button_focus_active    = theme_dir .. "icons/titlebar/m
 
 
 -- You can use your own layout icons like this:
-theme.layout_fairh       = gears.color.recolor_image(theme_dir .. "icons/layouts/fairhw.png", theme.gray)
-theme.layout_fairv       = gears.color.recolor_image(theme_dir .. "icons/layouts/fairvw.png", theme.gray)
-theme.layout_floating    = gears.color.recolor_image(theme_dir .. "icons/layouts/floatingw.png", theme.gray)
-theme.layout_magnifier   = gears.color.recolor_image(theme_dir .. "icons/layouts/magnifierw.png", theme.gray)
-theme.layout_max         = gears.color.recolor_image(theme_dir .. "icons/layouts/maxw.png", theme.gray)
-theme.layout_fullscreen  = gears.color.recolor_image(theme_dir .. "icons/layouts/fullscreenw.png", theme.gray)
-theme.layout_tilebottom  = gears.color.recolor_image(theme_dir .. "icons/layouts/tilebottomw.png", theme.gray)
-theme.layout_tileleft    = gears.color.recolor_image(theme_dir .. "icons/layouts/tileleftw.png", theme.gray)
-theme.layout_tile        = gears.color.recolor_image(theme_dir .. "icons/layouts/tilew.png", theme.gray)
-theme.layout_tiletop     = gears.color.recolor_image(theme_dir .. "icons/layouts/tiletopw.png", theme.gray)
-theme.layout_spiral      = gears.color.recolor_image(theme_dir .. "icons/layouts/spiralw.png", theme.gray)
-theme.layout_dwindle     = gears.color.recolor_image(theme_dir .. "icons/layouts/dwindlew.png", theme.gray)
-theme.layout_cornernw    = gears.color.recolor_image(theme_dir .. "icons/layouts/cornernww.png", theme.gray)
-theme.layout_cornerne    = gears.color.recolor_image(theme_dir .. "icons/layouts/cornernew.png", theme.gray)
-theme.layout_cornersw    = gears.color.recolor_image(theme_dir .. "icons/layouts/cornersww.png", theme.gray)
-theme.layout_cornerse    = gears.color.recolor_image(theme_dir .. "icons/layouts/cornersew.png", theme.gray)
+theme.layout_fairh              = gears.color.recolor_image(theme_dir .. "icons/layouts/fairhw.png", theme.gray)
+theme.layout_fairv              = gears.color.recolor_image(theme_dir .. "icons/layouts/fairvw.png", theme.gray)
+theme.layout_floating           = gears.color.recolor_image(theme_dir .. "icons/layouts/floatingw.png", theme.gray)
+theme.layout_magnifier          = gears.color.recolor_image(theme_dir .. "icons/layouts/magnifierw.png", theme.gray)
+theme.layout_max                = gears.color.recolor_image(theme_dir .. "icons/layouts/maxw.png", theme.gray)
+theme.layout_fullscreen         = gears.color.recolor_image(theme_dir .. "icons/layouts/fullscreenw.png", theme.gray)
+theme.layout_tilebottom         = gears.color.recolor_image(theme_dir .. "icons/layouts/tilebottomw.png", theme.gray)
+theme.layout_tileleft           = gears.color.recolor_image(theme_dir .. "icons/layouts/tileleftw.png", theme.gray)
+theme.layout_tile               = gears.color.recolor_image(theme_dir .. "icons/layouts/tilew.png", theme.gray)
+theme.layout_tiletop            = gears.color.recolor_image(theme_dir .. "icons/layouts/tiletopw.png", theme.gray)
+theme.layout_spiral             = gears.color.recolor_image(theme_dir .. "icons/layouts/spiralw.png", theme.gray)
+theme.layout_dwindle            = gears.color.recolor_image(theme_dir .. "icons/layouts/dwindlew.png", theme.gray)
+theme.layout_cornernw           = gears.color.recolor_image(theme_dir .. "icons/layouts/cornernww.png", theme.gray)
+theme.layout_cornerne           = gears.color.recolor_image(theme_dir .. "icons/layouts/cornernew.png", theme.gray)
+theme.layout_cornersw           = gears.color.recolor_image(theme_dir .. "icons/layouts/cornersww.png", theme.gray)
+theme.layout_cornerse           = gears.color.recolor_image(theme_dir .. "icons/layouts/cornersew.png", theme.gray)
 
-theme.mstab_tabbar_style = "modern"
+theme.mstab_tabbar_style        = "modern"
+
+theme.notification_border_width = theme.border_width
+theme.notification_border_color = theme.lime
+theme.notification_font         = theme.font
+theme.notification_padding      = dpi(10)
 
 return theme

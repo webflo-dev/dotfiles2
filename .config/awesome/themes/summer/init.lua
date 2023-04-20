@@ -44,17 +44,29 @@ screen.connect_signal("request::wallpaper", function(s)
     awful.wallpaper {
       screen = s,
       widget = {
-        {
-          image     = theme_dir .. "wallpaper-" .. stdout:sub(1, -2) .. ".jpg",
-          upscale   = true,
-          downscale = true,
-          widget    = wibox.widget.imagebox,
-        },
-        valign = "center",
-        halign = "center",
-        tiled  = false,
-        widget = wibox.container.tile,
-      }
+        -- {
+        image                 = theme_dir .. "wallpaper-" .. stdout:sub(1, -2) .. ".jpg",
+        upscale               = true,
+        downscale             = true,
+        horizontal_fit_policy = "fit",
+        vertical_fit_policy   = "fit",
+        widget                = wibox.widget.imagebox,
+      },
     }
+    -- awful.wallpaper {
+    --   screen = s,
+    --   widget = {
+    --     {
+    --       image     = theme_dir .. "wallpaper-" .. stdout:sub(1, -2) .. ".jpg",
+    --       upscale   = true,
+    --       downscale = true,
+    --       widget    = wibox.widget.imagebox,
+    --     },
+    --     valign = "center",
+    --     halign = "center",
+    --     tiled  = false,
+    --     widget = wibox.container.tile,
+    --   }
+    -- }
   end)
 end)
