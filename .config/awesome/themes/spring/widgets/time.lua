@@ -2,15 +2,15 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
-local util = require("themes.spring.util")
+local utilUi = require("helpers.ui")
 local box = require("themes.spring.widgets.box")
 
 local w_icon = wibox.widget {
   widget = wibox.widget.textbox,
-  markup = util.colorize_text(beautiful.icons.clock, beautiful.accent_color, 'bold'),
+  markup = utilUi.colorize_text(beautiful.icons.clock, beautiful.accent_color, 'bold'),
   align = 'center',
   valign = 'center',
-  font = util.font_glyph(),
+  font = utilUi.font_glyph(),
 }
 
 local w_text = wibox.widget {

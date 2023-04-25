@@ -4,7 +4,7 @@ local beautiful = require("beautiful")
 local gears = require("gears")
 local dpi = beautiful.xresources.apply_dpi
 
-local util = require("themes.summer.util")
+local utilUi = require("helpers.ui")
 local box = require("themes.summer.widgets.base.box")
 
 local fixed_width = 50
@@ -17,7 +17,7 @@ local function worker(user_args)
     align = 'center',
     valign = 'center',
     forced_width = dpi(20),
-    font = util.font_glyph(12),
+    font = utilUi.font_glyph(12),
   }
 
   local value_widget = wibox.widget {
@@ -55,10 +55,10 @@ local function worker(user_args)
       from  = { 0, 0 },
       to    = { fixed_width, 0 },
       stops = {
-        { 0, beautiful.green },
+        { 0,          beautiful.green },
         { used_value, beautiful.green },
         { used_value, beautiful.lime },
-        { 1, beautiful.lime },
+        { 1,          beautiful.lime },
       }
     })
     percentage_widget:set_text(math.floor(used_ram_percentage) .. "%")
@@ -67,6 +67,8 @@ local function worker(user_args)
   return widget
 end
 
-return setmetatable(widget, { __call = function(_, ...)
-  return worker(...)
-end })
+return setmetatable(widget, {
+  __call = function(_, ...)
+    return worker(...)
+  end
+})

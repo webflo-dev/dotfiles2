@@ -13,18 +13,33 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +20 src/components/system/Toast/_.docs.tsx
+badd +10 ~/dev/castor/frontend/src/components/pages/PrivateSection/ProfilePageSection/tabs/DashboardsPage/_.tsx
+badd +23 ~/dev/castor/frontend/src/components/pages/PrivateSection/ProfilePageSection/common/DashboardsPage/_.tsx
+badd +5 ~/dev/castor/frontend/src/components/pages/PrivateSection/ProfilePageSection/common/DashboardsPage/queries.ts
+badd +24 ~/dev/castor/frontend/src/components/pages/PrivateSection/ProfilePageSection/common/DashboardsPage/constants.ts
 argglobal
 %argdel
-$argadd ~/dev/castor/frontend/
-edit src/components/system/Toast/_.docs.tsx
+edit ~/dev/castor/frontend/src/components/pages/PrivateSection/ProfilePageSection/common/DashboardsPage/constants.ts
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
 argglobal
-let s:l = 20 - ((19 * winheight(0) + 45) / 90)
+balt ~/dev/castor/frontend/src/components/pages/PrivateSection/ProfilePageSection/common/DashboardsPage/queries.ts
+let s:l = 38 - ((37 * winheight(0) + 45) / 91)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 20
-normal! 048|
+keepjumps 38
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -32,6 +47,8 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)

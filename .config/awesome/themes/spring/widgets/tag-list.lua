@@ -3,7 +3,7 @@ local wibox = require "wibox"
 local beautiful = require "beautiful"
 local dpi = beautiful.xresources.apply_dpi
 
-local utils = require("themes.spring.util")
+local utilsUi = require("helpers.ui")
 local box = require("themes.spring.widgets.box")
 
 local function update_tag(item, tag, index)
@@ -33,7 +33,7 @@ local tag_list = function(s)
     },
     widget_template = {
       id = "tag",
-      font = utils.font(14),
+      font = utilsUi.font(14),
       widget = wibox.widget.textbox,
       create_callback = function(self, c3, index, object)
         update_tag(self, c3, index)

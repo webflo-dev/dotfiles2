@@ -1,5 +1,5 @@
 local has_words_before = function()
-  ---@diagnostic disable-next-line: deprecated
+  -- if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
@@ -31,6 +31,13 @@ return {
       -- "petertriho/cmp-git",
       -- "David-Kunz/cmp-npm",
       -- "hrsh7th/cmp-emoji",
+      -- {
+      --   "zbirenbaum/copilot-cmp",
+      --   after = { "copilot.lua" },
+      --   config = function()
+      --     require("copilot_cmp").setup()
+      --   end
+      -- }
     },
     opts = function()
       local cmp = require("cmp")
@@ -41,7 +48,8 @@ return {
         path = "PATH",
         snippy = "SNIPPET",
         emoji = "EMOJI",
-        codeium = "",
+        codeium = " ",
+        Copilot = " ",
       }
 
 
@@ -101,24 +109,42 @@ return {
           { name = "nvim_lsp" },
           { name = "nvim_lsp_signature_help" },
           { name = "nvim_lsp_document_symbol" },
+          { name = "copilot" },
           { name = "codeium" },
           { name = "buffer",                  keyword_length = 5 },
           { name = "path" },
+
           -- { name = "git" },
           -- { name = 'npm',                     keyword_length = 4 },
           -- { name = "emoji" },
         }),
         sorting = {
           comparators = {
+            -- require("copilot_cmp.comparators").prioritize,
+
+            -- Below is the default comparitor list and order for nvim-cmp
             cmp.config.compare.offset,
+            -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
             cmp.config.compare.exact,
-            cmp.config.compare.sort_text,
             cmp.config.compare.score,
             cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
             cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
             cmp.config.compare.length,
             cmp.config.compare.order,
-          },
+          }
+          -- comparators = {
+          --   cmp.config.compare.offset,
+          --   cmp.config.compare.exact,
+          --   cmp.config.compare.sort_text,
+          --   cmp.config.compare.score,
+          --   cmp.config.compare.recently_used,
+          --   cmp.config.compare.kind,
+          --   cmp.config.compare.length,
+          --   cmp.config.compare.order,
+          -- },
+
           -- comparators = {
           --   cmp.config.compare.exact,
           --   cmp.config.compare.locality,
@@ -140,7 +166,7 @@ return {
 
             local completion_context = get_lsp_completion_context(entry.completion_item, entry.source)
             if completion_context ~= nil and completion_context ~= "" then
-              item.menu = item.menu .. " -> " .. completion_context
+              item.menu = item.menu .. " ・" .. completion_context
             end
 
             return item

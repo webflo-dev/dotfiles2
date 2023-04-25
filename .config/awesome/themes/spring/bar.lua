@@ -3,16 +3,19 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
-local tag_list = require("themes.spring.widgets.tag_list")
+local layout_box = require("themes.spring.widgets.layout-box")
+local tag_list = require("themes.spring.widgets.tag-list")
 local date = require("themes.spring.widgets.date")
 local time = require("themes.spring.widgets.time")
 local system = require("themes.spring.widgets.system")
 local audio = require("themes.spring.widgets.audio")
 local network = require("themes.spring.widgets.network")
 
+
 local function left(s)
   return wibox.widget {
     tag_list(s),
+    layout_box(s),
     layout = wibox.layout.fixed.horizontal,
     spacing = dpi(10)
   }

@@ -2,7 +2,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
-local util = require("themes.summer.util")
+local utilUi = require("helpers.ui")
 
 local base = require("themes.summer.widgets.base")
 
@@ -15,7 +15,7 @@ local function worker(user_args)
     align = 'center',
     valign = 'center',
     forced_width = dpi(20),
-    font = util.font_glyph(12),
+    font = utilUi.font_glyph(12),
   }
 
   local value_widget = wibox.widget {
@@ -24,7 +24,7 @@ local function worker(user_args)
     align = "right",
     valign = "center",
     forced_width = dpi(40),
-    font = util.font(12),
+    font = utilUi.font(12),
   }
 
 

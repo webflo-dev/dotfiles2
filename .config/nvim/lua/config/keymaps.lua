@@ -116,6 +116,7 @@ map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
 map("n", "<leader>wq", "<C-W>c", { desc = "Close window" })
 map("n", "<leader>w-", "<C-W>s", { desc = "Split window below" })
 map("n", "<leader>w|", "<C-W>v", { desc = "Split window right" })
+map("n", "<C-w>m", "<C-W>_<C-W>|", { desc = "Maximize window" })
 
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
@@ -186,7 +187,7 @@ map("n", "<leader>xi", "<cmd>TroubleToggle lsp_implementations<cr>", { desc = "L
 
 
 -- harpoon
-wk.register({ ["<leader>h"] = { name = "harpoooooon" } })
+wk.register({ ["<leader>h"] = { name = "harpoon" } })
 map("n", "<leader>ha", function() require("harpoon.mark").add_file() end, { desc = "Add file (harpoon)" })
 map("n", "<leader>ht", function() require("harpoon.ui").toggle_quick_menu() end, { desc = "Toggle menu (harpoon)" })
 map("n", "<leader>hT", "<cmd>Telescope harpoon marks<cr>", { desc = "Toggle menu with preview (harpoon)" })

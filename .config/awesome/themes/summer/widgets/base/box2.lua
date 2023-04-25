@@ -3,7 +3,6 @@ local beautiful = require("beautiful")
 local gears = require("gears")
 local dpi = beautiful.xresources.apply_dpi
 
-local util = require("themes.summer.util")
 
 return function(args)
   args = args or {}

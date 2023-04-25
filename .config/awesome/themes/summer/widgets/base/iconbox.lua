@@ -3,7 +3,7 @@ local beautiful = require("beautiful")
 local gears = require("gears")
 local dpi = beautiful.xresources.apply_dpi
 
-local util = require("themes.summer.util")
+local utilUi = require("helpers.ui")
 
 return function(icon)
   local icon_widget = wibox.widget {
@@ -12,7 +12,7 @@ return function(icon)
     align = 'center',
     valign = 'center',
     forced_width = dpi(20),
-    font = util.font_glyph(12),
+    font = utilUi.font_glyph(12),
   }
 
   local widget = wibox.widget {
@@ -32,7 +32,7 @@ return function(icon)
       icon_widget:set_forced_width(width)
     end,
     set_icon_size = function(_, size)
-      icon_widget:set_font(util.font_glyph(size))
+      icon_widget:set_font(utilUi.font_glyph(size))
     end,
     set_icon_font = function(_, font)
       icon_widget:set_font(font)

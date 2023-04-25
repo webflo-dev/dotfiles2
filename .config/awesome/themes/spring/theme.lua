@@ -113,7 +113,15 @@ theme.icons                     = {
 -- theme.titlebar_maximized_button_focus_active    = theme_dir .. "icons/titlebar/maximized_focus_active.png"
 
 
-
+theme.layout_tile = theme_dir .. "icons/layouts/tile.svg"
+theme.layout_tilebottom = theme_dir .. "icons/layouts/tilebottom.svg"
+theme.layout_magnifier = theme_dir .. "icons/layouts/magnifier.svg"
+theme.layout_max = theme_dir .. "icons/layouts/max.svg"
+theme.layout_horizontal = theme_dir .. "icons/layouts/horizontal.svg"
+theme.layout_spiral = theme_dir .. "icons/layouts/spiral.svg"
+theme.layout_mstab = theme_dir .. "icons/layouts/mstab.svg"
+theme.layout_deck = theme_dir .. "icons/layouts/deck.svg"
+theme.layout_floating = theme_dir .. "icons/layouts/floating.svg"
 -- You can use your own layout icons like this:
 -- theme.layout_fairh       = gears.color.recolor_image(theme_dir .. "icons/layouts/fairhw.png", theme.gray)
 -- theme.layout_fairv       = gears.color.recolor_image(theme_dir .. "icons/layouts/fairvw.png", theme.gray)

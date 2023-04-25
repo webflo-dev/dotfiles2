@@ -2,18 +2,17 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
-local util = require("themes.spring.util")
-local box = require("themes.spring.widgets.box")
+local utilUi = require("helpers.ui")
 
 
 local memory_icon = wibox.widget {
   widget = wibox.widget.textbox,
   -- markup = util.colorize_text(beautiful.icons.graphic_card, beautiful.accent_color),
-  markup = util.colorize_text(beautiful.icons.graphic_card, beautiful.lime),
+  markup = utilUi.colorize_text(beautiful.icons.graphic_card, beautiful.lime),
   align = 'center',
   valign = 'center',
   -- forced_width = dpi(20),
-  font = util.font_glyph(),
+  font = utilUi.font_glyph(),
 }
 
 local memory_text = wibox.widget {
@@ -22,7 +21,7 @@ local memory_text = wibox.widget {
   align = "right",
   valign = "center",
   forced_width = dpi(30),
-  font = util.font_monospace(),
+  font = utilUi.font_monospace(),
 }
 
 

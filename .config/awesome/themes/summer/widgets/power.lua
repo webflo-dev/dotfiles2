@@ -4,7 +4,7 @@ local beautiful = require("beautiful")
 local gears = require("gears")
 local dpi = beautiful.xresources.apply_dpi
 
-local util = require("themes.summer.util")
+local utilUi = require("helpers.ui")
 local box = require("themes.summer.widgets.base.box")
 
 local UPower_States =
@@ -38,7 +38,7 @@ local function worker()
     align = 'center',
     valign = 'center',
     forced_width = dpi(25),
-    font = util.font_glyph(12),
+    font = utilUi.font_glyph(12),
   }
 
   widget = wibox.widget {

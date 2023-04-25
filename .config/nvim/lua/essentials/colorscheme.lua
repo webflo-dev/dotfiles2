@@ -19,6 +19,17 @@ return {
         highlights.TreesitterContextLineNumber = {
           fg = highlights.CursorLineNr.fg
         }
+
+        -- vim.api.nvim_set_hl(0, 'WinSeparator', { fg = 'black', bold = true })
+        highlights.VertSplit = {
+          fg = "#FFFFFF"
+        }
+        highlights.WinSeparator = {
+          bold = true,
+          fg = colors.fg_gutter
+          -- fg = colors.fg_dark
+        }
+
         -- highlights.TreesitterContextBottom = {
         --   underline = true,
         -- }

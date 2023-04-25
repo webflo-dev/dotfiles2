@@ -2,18 +2,18 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
-local util = require("themes.spring.util")
+local utilUi = require("helpers.ui")
 local box = require("themes.spring.widgets.box")
 
 
 local volume_icon = wibox.widget {
   widget = wibox.widget.textbox,
   -- text = "VOL",
-  markup = util.colorize_text("VOL", beautiful.accent_color),
+  markup = utilUi.colorize_text("VOL", beautiful.accent_color),
   align = 'center',
   valign = 'center',
   -- forced_width = dpi(20),
-  font = util.font_glyph(),
+  font = utilUi.font_glyph(),
 }
 
 local volume_text = wibox.widget {
@@ -22,7 +22,7 @@ local volume_text = wibox.widget {
   align = "right",
   valign = "center",
   forced_width = dpi(40),
-  font = util.font_monospace(),
+  font = utilUi.font_monospace(),
 }
 
 
@@ -49,11 +49,11 @@ local default_fg = volume_text.fg
 awesome.connect_signal("signal::volume", function(volume, mute)
   volume_text:set_text(volume .. "%")
   if (mute == true) then
-    volume_icon:set_markup(util.colorize_text(beautiful.icons.volume_mute, beautiful.red))
+    volume_icon:set_markup(utilUi.colorize_text(beautiful.icons.volume_mute, beautiful.red))
     volume_icon_block:set_fg(beautiful.red)
     volume_text_block:set_fg(beautiful.red)
   else
-    volume_icon:set_markup(util.colorize_text(beautiful.icons.volume, beautiful.accent_color))
+    volume_icon:set_markup(utilUi.colorize_text(beautiful.icons.volume, beautiful.accent_color))
     volume_icon_block:set_fg(default_fg)
     volume_text_block:set_fg(default_fg)
   end

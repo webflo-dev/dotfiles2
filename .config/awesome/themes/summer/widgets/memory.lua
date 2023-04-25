@@ -5,7 +5,7 @@ local watch = require("awful.widget.watch")
 local wibox = require("wibox")
 local dpi = beautiful.xresources.apply_dpi
 
-local util = require("themes.summer.util")
+local utilUi = require("helpers.ui")
 local box = require("themes.summer.widgets.base.box")
 
 
@@ -15,7 +15,7 @@ local gpu_icon = wibox.widget {
   align = 'center',
   valign = 'center',
   forced_width = dpi(20),
-  font = util.font_glyph(12),
+  font = utilUi.font_glyph(12),
 }
 
 local gpu_text = wibox.widget {
@@ -24,7 +24,7 @@ local gpu_text = wibox.widget {
   align = "right",
   valign = "center",
   forced_width = dpi(40),
-  font = util.font(12),
+  font = utilUi.font(12),
 }
 
 awesome.connect_signal("nvidia::update", function(value)

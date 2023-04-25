@@ -13,22 +13,24 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +18 lua/_lazy.lua
+badd +3 lua/essentials/dependencies.lua
 badd +1 ~/.config/nvim
-badd +105 lua/config/keymaps.lua
-badd +25 lua/plugins/leap.lua
+badd +190 lua/config/keymaps.lua
+badd +32 lua/plugins/copilot.lua
+badd +1 lua/essentials/treesitter.lua
+badd +29 lua/essentials/lsp_servers/tsserver.lua
 argglobal
 %argdel
 $argadd ~/.config/nvim
-edit lua/plugins/leap.lua
+edit lua/essentials/lsp_servers/tsserver.lua
 argglobal
 balt lua/config/keymaps.lua
-let s:l = 19 - ((18 * winheight(0) + 45) / 90)
+let s:l = 29 - ((28 * winheight(0) + 45) / 91)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 19
-normal! 05|
+keepjumps 29
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

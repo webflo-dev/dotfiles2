@@ -2,7 +2,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
-local util = require("themes.spring.util")
+local utilUi = require("helpers.ui")
 local box = require("themes.spring.widgets.box")
 
 local cpu = require("themes.spring.widgets.cpu")
@@ -11,7 +11,7 @@ local gpu = require("themes.spring.widgets.gpu")
 
 local seperator = wibox.widget {
   widget = wibox.widget.textbox,
-  markup = util.colorize_text(" | ", beautiful.accent_color),
+  markup = utilUi.colorize_text(" | ", beautiful.accent_color),
   align = 'center',
   valign = 'center',
 }

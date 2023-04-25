@@ -4,7 +4,7 @@ local beautiful = require("beautiful")
 local gears = require("gears")
 local dpi = beautiful.xresources.apply_dpi
 
-local util = require("themes.summer.util")
+local utilUi = require("helpers.ui")
 local box = require("themes.summer.widgets.base.box")
 
 local widget = {}
@@ -27,7 +27,7 @@ local function worker(user_args)
     align = "right",
     valign = "center",
     forced_width = dpi(40),
-    font = util.font(12),
+    font = utilUi.font(12),
   }
 
 

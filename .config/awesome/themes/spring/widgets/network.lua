@@ -2,7 +2,6 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
-local util = require("themes.spring.util")
 local box = require("themes.spring.widgets.box")
 
 local ethernet = require("themes.spring.widgets.ethernet")

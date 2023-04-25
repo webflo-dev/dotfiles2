@@ -3,7 +3,7 @@ local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
 local box = require("themes.summer.widgets.base.box2")
-local util = require("themes.summer.util")
+local utilUi = require("helpers.ui")
 
 local widget = {}
 
@@ -36,7 +36,7 @@ local function worker()
         text = "",
         align = 'center',
         valign = 'center',
-        font = util.font_glyph(12),
+        font = utilUi.font_glyph(12),
       },
       {
         id = "bar_container",
@@ -47,7 +47,7 @@ local function worker()
           format = "%H:%M",
           align = "center",
           valign = "center",
-          font = util.font(12),
+          font = utilUi.font(12),
         }
       },
     },

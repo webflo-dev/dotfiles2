@@ -2,7 +2,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = beautiful.xresources.apply_dpi
 
-local util = require("themes.spring.util")
+local utilUi = require("helpers.ui")
 local box = require("themes.spring.widgets.box")
 
 
@@ -12,7 +12,7 @@ local ethernet_icon = wibox.widget {
   align = 'center',
   valign = 'center',
   -- forced_width = dpi(20),
-  font = util.font_glyph(),
+  font = utilUi.font_glyph(),
 }
 
 local ethernet_icon_block = wibox.widget {

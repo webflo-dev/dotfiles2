@@ -13,35 +13,25 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +23 ~/.config/zsh/plugins.zsh
-badd +42 ~/.config/zsh/.zshrc
+badd +17 plugins.zsh
+badd +110 .zshrc
+badd +2 key-bindings.zsh
+badd +89 .zshenv
 badd +1 ./
-badd +2 ~/.config/zsh/key-bindings.zsh
-badd +89 ~/.config/zsh/.zshenv
+badd +17 ~/dev/castor/__castor.zsh
+badd +14 ~/.config/zsh/functions.zsh
 argglobal
 %argdel
 $argadd ./
-edit ~/.config/zsh/.zshenv
-let s:save_splitbelow = &splitbelow
-let s:save_splitright = &splitright
-set splitbelow splitright
-let &splitbelow = s:save_splitbelow
-let &splitright = s:save_splitright
-wincmd t
-let s:save_winminheight = &winminheight
-let s:save_winminwidth = &winminwidth
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
+edit ~/.config/zsh/functions.zsh
 argglobal
-balt ~/.config/zsh/key-bindings.zsh
-let s:l = 89 - ((38 * winheight(0) + 21) / 43)
+balt plugins.zsh
+let s:l = 14 - ((13 * winheight(0) + 45) / 91)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 89
-normal! 074|
+keepjumps 14
+normal! 09|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -49,8 +39,6 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
-let &winminheight = s:save_winminheight
-let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)

@@ -4,7 +4,7 @@ local wibox = require "wibox"
 local beautiful = require "beautiful"
 local dpi = beautiful.xresources.apply_dpi
 local xrdb = beautiful.xresources.get_current_theme()
-local utils = require("themes.summer.util")
+local utilsUi = require("helpers.ui")
 
 
 local function update_tag(item, tag, index)
@@ -34,7 +34,7 @@ local tag_list = function(s)
     },
     widget_template = {
       id = "tag",
-      font = utils.font(14),
+      font = utilsUi.font(14),
       widget = wibox.widget.textbox,
       create_callback = function(self, c3, index, object)
         update_tag(self, c3, index)

@@ -30,14 +30,13 @@ export BUN_INSTALL="$XDG_CONFIG_HOME/bun"
 
 
 #--- EXPORT -------------------------------------------------------------------
-export HISTSIZE=5000
-export SAVEHIST=5000
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 export LC_COLLATE="C"
 export TZ="Europe/Paris"
 
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER='nvim +Man!'
 export PAGER='bat -p'
 export LESS='-g -i -M -R -S -w -z-4'
 
@@ -46,3 +45,45 @@ export BROWSER="microsoft-edge-stable"
 export VISUAL="nvim"
 export EDITOR="nvim"
 
+
+#--- LESS -------------------------------------------------------------------
+#  -F    Exit if the content fits on one screen
+#  -g    Highlights just the current match of any searched string.
+#  -i    Case-insensitive searches.
+#  -M    Shows more detailed prompt, including file position.
+#  -N    Shows line numbers (useful for source code viewing).
+#  -R / --RAW-CONTROL-CHARS
+#  -S    Disables line wrap ("chop long lines"). Long
+#        lines can be seen by side scrolling.
+#  -X    Leave file contents on screen when less exits.
+#  -?    Shows help.
+#  +F    Follow mode for log.
+#  -w / --hilite-unread
+#        Temporarily highlights the first "new" line
+#        after a forward movement of a full page.
+#  -z-4  Move page not on the full high of the screen
+#        but on high minus 4 lines
+
+# export LESS='-F -i -M -R -S -w -z-3'
+# export LESS='-F -i -M -R -S -z-3'
+export LESS='-i -M -R -S -z-4'
+export LESSHISTFILE=/dev/null
+export LESS_TERMCAP_md=$'\e[01;97m'     # Begins bold.
+export LESS_TERMCAP_so=$'\e[00;47;30m'  # Begins standout-mode.
+export LESS_TERMCAP_us=$'\e[04;97m'     # Begins underline.
+export LESS_TERMCAP_me=$'\e[0m'         # Ends mode.
+export LESS_TERMCAP_se=$'\e[0m'         # Ends standout-mode.
+export LESS_TERMCAP_ue=$'\e[0m'         # Ends underline.
+
+
+# WORDCHARS (non-alphanumeric chars treated as part of a word)
+# You can also tweak this if you'd prefer ^w to break on dot, underscore, etc.
+export WORDCHARS='*?[]~=&;!#$%^(){}<>'
+
+
+export HISTSIZE=5000
+export SAVEHIST=5000
+export HISTORY_IGNORE="(cd|ranger|r|exit|:q|kill|nvim)"
+
+
+export OPENAI_API_KEY="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"

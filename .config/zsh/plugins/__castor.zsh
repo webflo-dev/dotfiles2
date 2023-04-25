@@ -1,1 +1,0 @@
-/home/florent/dev/castor/__castor.zsh

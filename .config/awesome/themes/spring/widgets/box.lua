@@ -1,6 +1,6 @@
 local wibox = require("wibox")
 local beautiful = require("beautiful")
-local util = require("themes.spring.util")
+local utilUi = require("helpers.ui")
 
 local dpi = beautiful.xresources.apply_dpi
 
@@ -15,7 +15,7 @@ return function(child)
       }
     },
     widget = wibox.container.background,
-    shape = util.shape.rounded_rect(),
+    shape = utilUi.rounded_shape(),
     bg = beautiful.bg_normal,
     border_color = beautiful.bg_focus,
     -- border_color = beautiful.,
