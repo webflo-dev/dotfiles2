@@ -2,12 +2,12 @@ local M = {}
 
 local function lsp_format(buffer)
 	if vim.b.format_on_save == false then
+		vim.notify("format_on_save is disabled")
 		return
 	end
 
 	local ft = vim.bo[buffer].filetype
 	local have_nls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
-
 	vim.lsp.buf.format({
 		bufnr = buffer,
 		filter = function(client)
@@ -26,6 +26,7 @@ function M.attach(client, buffer, autocmd_group)
 		and client.config.capabilities
 		and client.config.capabilities.documentFormattingProvider == false
 	then
+		vim.notify("not formatting provider:" .. client.name)
 		return
 	end
 
@@ -51,7 +52,7 @@ function M.attach(client, buffer, autocmd_group)
 			group = autocmd_group,
 			buffer = buffer,
 			callback = format,
-			desc = "Format file on save (setup by vim.b.format_on_save",
+			desc = "Format file on save (setup by vim.b.format_on_save)",
 		})
 	end
 end

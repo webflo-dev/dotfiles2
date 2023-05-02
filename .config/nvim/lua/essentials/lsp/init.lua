@@ -1,3 +1,4 @@
+local env = require("env")
 local utils = require("utils")
 
 return {
@@ -58,13 +59,21 @@ return {
 				"prismals",
 				"rust_analyzer",
 				-- "tsserver",
-				"vtsls",
+				-- "vtsls",
 				"yamlls",
 			},
 		},
 		config = function(plugin, opts)
-			local lsp_autocmd_group = vim.api.nvim_create_augroup("LspAutocmds", {})
+			local lsp_autocmd_group = vim.api.nvim_create_augroup("LspAutocmds", { clear = true })
 			local custom_attach_files = utils.get_lua_files_from_dir("essentials/lsp_attach")
+
+			-- does not work as we use mason-lspconfig that loop over installed servers.
+			-- should perform our own loop and call lspconfig.setup() for each server
+			if env.USE_VTSLS then
+				table.insert(opts.servers, "vtsls")
+			else
+				table.insert(opts.servers, "tsserver")
+			end
 
 			-- setup lsconfig
 			require("mason-lspconfig").setup({ ensure_installed = opts.servers })
@@ -78,14 +87,6 @@ return {
 				callback = function(args)
 					local buffer = args.buf
 					local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-					-- Clear any autocmd declared by previous client
-					if pcall(vim.api.nvim_get_autocmds, { group = lsp_autocmd_group, buffer = buffer }) then
-						vim.api.nvim_clear_autocmds({
-							group = lsp_autocmd_group,
-							buffer = buffer,
-						})
-					end
 
 					require("essentials.lsp.autocmds").attach(client, buffer, lsp_autocmd_group)
 					require("essentials.lsp.formatting").attach(client, buffer, lsp_autocmd_group)
@@ -122,6 +123,7 @@ return {
 				require("lspconfig")[server].setup(server_opts)
 			end
 
+			-- require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 			require("mason-lspconfig").setup_handlers({ setup })
 		end,
 	},
@@ -134,6 +136,7 @@ return {
 			"typescript",
 			"typescriptreact",
 		},
+		enabled = env.USE_VTSLS,
 		dependencies = { "nvim-lspconfig" },
 	},
 
