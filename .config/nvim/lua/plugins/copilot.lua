@@ -1,11 +1,8 @@
--- print array of json objec
-
 return {
   -- { 'Exafunction/codeium.vim' },
   -- { "github/copilot.vim" }
   {
     "zbirenbaum/copilot.lua",
-    -- cmd = "Copilot",
     event = "InsertEnter",
     build = ":Copilot auth",
     opts = {
@@ -17,11 +14,11 @@ return {
           jump_next = "]]",
           accept = "<CR>",
           refresh = "gr",
-          open = "<C-CR>"
+          open = "<C-CR>",
         },
         layout = {
           position = "right", -- | top | left | right
-          ratio = 0.4
+          ratio = 0.4,
         },
       },
       suggestion = {
@@ -30,7 +27,6 @@ return {
         debounce = 75,
         keymap = {
           accept = "<M-l>",
-          -- accept = "<C-Space>",
           accept_word = false,
           accept_line = false,
           next = "<M-]>",
@@ -47,9 +43,9 @@ return {
         help = false,
         gitcommit = false,
         gitrebase = false,
-        terraform = false, -- disallow specific filetype
+        terraform = false,
         sh = function()
-          if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), '^%.env.*') then
+          if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), "^%.env.*") then
             -- disable for .env files
             return false
           end

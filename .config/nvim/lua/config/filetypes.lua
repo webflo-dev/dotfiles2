@@ -1,10 +1,14 @@
 vim.filetype.add({
-  extension = {
-    eslintrc = "json",
-    mdx = "markdown",
-    prettierrc = "json",
-  },
-  pattern = {
-    [".*%.env.*"] = "sh",
-  },
+	extension = {
+		eslintrc = "jsonc",
+		mdx = "markdown",
+		prettierrc = "json",
+	},
+	filename = {
+		[".eslintrc.json"] = "jsonc",
+	},
+	pattern = {
+		[".*%.env.*"] = "sh",
+		["tsconfig.*.json"] = "jsonc",
+	},
 })
